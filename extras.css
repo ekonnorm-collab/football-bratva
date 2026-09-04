@@ -1,0 +1,12 @@
+.cards { grid-template-columns: repeat(4, 1fr); }
+.card--ekon { background: var(--lime); border-top: 8px solid var(--ink); }
+.card--ekon .role { color: #3d4b00; }
+.card--ekon .card__number { color: var(--orange); }
+.card--azamat .photo img { object-position: center 43%; }
+.card--shamil .photo img { object-position: 68% 42%; }
+.card--galym .photo img { object-fit: contain; object-position: center; filter: none; }
+.card--galym .photo { background: #241612; }
+.card--ekon .photo img { object-fit: contain; object-position: center top; filter: none; }
+.card--ekon .photo { background: #263300; }
+@media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
