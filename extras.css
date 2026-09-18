@@ -15,7 +15,7 @@
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.section-visible {
+.visible {
     opacity: 1;
     transform: translateY(0);
 }
