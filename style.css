@@ -1,12 +1,36 @@
+/* =========================================================
+   ФК БРАТВА — STYLE.CSS
+   СЕЗОН 2026
+   ========================================================= */
+
+/* =========================
+   VARIABLES
+   ========================= */
+
 :root {
-    --ink: #111212;
-    --cream: #f3f0e9;
-    --lime: #d7ff38;
-    --orange: #ff5a36;
-    --blue: #4c6fff;
-    --green: #245c36;
-    --white: #ffffff;
+    --black: #080909;
+    --dark: #101313;
+    --dark-2: #171b1b;
+    --white: #f5f5ef;
+    --muted: #a7aaa5;
+    --line: rgba(255, 255, 255, 0.12);
+
+    --green: #b8ff35;
+    --green-dark: #6c9f12;
+
+    --red: #ff3b30;
+    --yellow: #ffd84d;
+
+    --max-width: 1280px;
+    --radius: 24px;
+
+    --shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
 }
+
+
+/* =========================
+   RESET
+   ========================= */
 
 * {
     box-sizing: border-box;
@@ -19,10 +43,15 @@ html {
 }
 
 body {
-    background: var(--cream);
-    color: var(--ink);
+    background: var(--black);
+    color: var(--white);
     font-family: "Manrope", sans-serif;
     overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 button,
@@ -31,582 +60,836 @@ a {
 }
 
 button {
-    border: none;
-    cursor: pointer;
+    border: 0;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
-/* ================= HERO ================= */
 
-.hero {
-    min-height: 760px;
-    padding: 32px 6vw;
+/* =========================
+   GENERAL
+   ========================= */
+
+section {
     position: relative;
-    overflow: hidden;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, .85),
-            rgba(0, 0, 0, .45)
-        ),
-        url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=2000&q=85")
-        center / cover;
+    padding: 120px 6vw;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-
-    width: 420px;
-    height: 420px;
-
-    right: -120px;
-    bottom: -180px;
-
-    border-radius: 50%;
-
-    background: var(--lime);
-    opacity: .9;
-}
-
-.hero__nav {
-    position: relative;
-    z-index: 2;
+.section-heading {
+    width: min(100%, var(--max-width));
+    margin: 0 auto 60px;
 
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
-    align-items: center;
-
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    gap: 40px;
 }
 
-.badge {
-    padding: 10px 15px;
-    border: 2px solid white;
-}
-
-.hero__copy {
-    position: relative;
-    z-index: 2;
-
-    max-width: 800px;
-    padding-top: 120px;
+.section-heading > p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    text-align: right;
 }
 
 .eyebrow {
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 
-    font-size: 13px;
+    color: var(--green);
+
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: 3px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family: "Russo One", sans-serif;
+    font-size: clamp(42px, 6vw, 86px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+}
+
+.dark-heading {
+    color: var(--white);
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.main-button {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    min-height: 56px;
+    padding: 0 24px;
+
+    border: 1px solid rgba(184, 255, 53, 0.45);
+    border-radius: 999px;
+
+    background: var(--green);
+    color: var(--black);
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.main-button span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.main-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(184, 255, 53, 0.25);
+}
+
+.main-button:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 28px 6vw 80px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 45%,
+            rgba(184, 255, 53, 0.13),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #080909 0%,
+            #111515 100%
+        );
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+    );
+}
+
+.hero-nav {
+    position: absolute;
+    top: 28px;
+    left: 6vw;
+    right: 6vw;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: "Russo One", sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.04em;
+}
+
+.season {
+    color: var(--muted);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.season strong {
+    color: var(--green);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(800px, 100%);
+    margin-top: 60px;
+}
+
+.hero-kicker {
+    margin-bottom: 22px;
+
+    color: var(--green);
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
 }
 
 .hero h1 {
+    max-width: 900px;
+
     font-family: "Russo One", sans-serif;
-    font-size: clamp(60px, 9vw, 145px);
-    line-height: .9;
-    letter-spacing: -4px;
+    font-size: clamp(60px, 10vw, 150px);
+    line-height: 0.83;
+    letter-spacing: -0.055em;
 }
 
-.hero h1 em {
-    color: var(--lime);
-    font-style: normal;
+.hero h1 span {
+    color: var(--green);
 }
 
-.hero__copy > p:not(.eyebrow) {
-    max-width: 570px;
-    margin: 30px 0;
+.hero-content p {
+    max-width: 460px;
+    margin: 35px 0;
 
-    font-size: 18px;
-    line-height: 1.6;
+    color: #b7bbb6;
+
+    font-size: 16px;
+    line-height: 1.75;
 }
 
-.button {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-
-    padding: 16px 22px;
-
-    background: var(--lime);
-    color: var(--ink);
-
-    font-weight: 900;
-    letter-spacing: 1px;
-
-    transition: .25s;
-}
-
-.button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.2);
-}
-
-.ball {
+.hero-ball {
     position: absolute;
-    z-index: 3;
-
     right: 10%;
-    top: 47%;
+    top: 45%;
 
-    font-size: 100px;
+    z-index: 1;
 
-    animation: ballFloat 3s ease-in-out infinite;
+    font-size: clamp(130px, 18vw, 270px);
+
+    opacity: 0.13;
+
+    animation: heroBallFloat 5s ease-in-out infinite;
 }
 
-@keyframes ballFloat {
-    0%, 100% {
-        transform: translateY(0) rotate(0);
+.hero-number {
+    position: absolute;
+    right: 5vw;
+    bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.04);
+
+    font-family: "Russo One", sans-serif;
+    font-size: clamp(130px, 22vw, 340px);
+    line-height: 0.7;
+
+    user-select: none;
+}
+
+@keyframes heroBallFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
     }
 
     50% {
-        transform: translateY(-25px) rotate(180deg);
+        transform: translateY(-25px) rotate(12deg);
     }
 }
 
-/* ================= GENERAL ================= */
 
-section {
-    padding: 110px 6vw;
+/* =========================
+   TEAM
+   ========================= */
+
+.team-section {
+    background: var(--white);
+    color: var(--black);
 }
 
-.section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 40px;
+.players-grid {
+    width: min(100%, var(--max-width));
+    margin: auto;
 
-    margin-bottom: 60px;
-}
-
-.section-head h2 {
-    font-family: "Russo One", sans-serif;
-    font-size: clamp(55px, 8vw, 110px);
-    line-height: .9;
-    letter-spacing: -3px;
-}
-
-.team-description {
-    max-width: 300px;
-
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-/* ================= CARDS ================= */
-
-.cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 18px;
 }
 
-.card {
+.player-card {
     position: relative;
+
+    min-height: 610px;
+
     overflow: hidden;
 
-    background: white;
+    border-radius: var(--radius);
+
+    background: #dfe1dc;
+
+    cursor: pointer;
 
     transition:
-        transform .35s,
-        box-shadow .35s;
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
-.card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 25px 50px rgba(0,0,0,.15);
+.player-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
 }
 
-.card--azamat {
-    border-top: 8px solid var(--lime);
-}
+.player-image {
+    position: relative;
+    height: 360px;
 
-.card--galym {
-    border-top: 8px solid var(--orange);
-}
-
-.card--shamil {
-    border-top: 8px solid var(--blue);
-}
-
-.card--ekon {
-    border-top: 8px solid var(--ink);
-}
-
-.photo {
-    height: 390px;
     overflow: hidden;
+
+    background: #222;
 }
 
-.photo img {
+.player-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 40%,
+            rgba(0, 0, 0, 0.65)
+        );
+}
+
+.player-image img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 
-    filter: grayscale(100%);
-
     transition:
-        filter .4s,
-        transform .5s;
+        transform 0.6s ease,
+        filter 0.6s ease;
 }
 
-.card:hover .photo img {
-    filter: grayscale(0);
-    transform: scale(1.08);
+.player-card:hover .player-image img {
+    transform: scale(1.07);
+    filter: saturate(1.15);
 }
 
-.card__number {
+.player-number {
     position: absolute;
-    top: 20px;
     right: 20px;
+    bottom: 15px;
 
-    font-family: "Russo One", sans-serif;
-    font-size: 48px;
+    z-index: 2;
 
     color: white;
 
-    text-shadow: 0 3px 10px rgba(0,0,0,.6);
+    font-family: "Russo One", sans-serif;
+    font-size: 70px;
+    line-height: 1;
 }
 
-.card__body {
-    padding: 25px;
+.player-info {
+    padding: 26px;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.role {
-    margin-bottom: 8px;
+.player-role {
+    color: #747873;
 
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 900;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.16em;
 }
 
-.card h3 {
-    margin-bottom: 15px;
+.player-info h3 {
+    margin: 8px 0 12px;
 
     font-family: "Russo One", sans-serif;
     font-size: 34px;
 }
 
-.card__body > p:not(.role) {
-    min-height: 75px;
+.player-info p {
+    min-height: 55px;
 
-    color: #555;
-    line-height: 1.5;
+    color: #666a66;
+
+    font-size: 13px;
+    line-height: 1.55;
 }
 
-.stats {
-    display: flex;
-    gap: 30px;
+.player-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
 
     margin-top: 25px;
 }
 
-.stats span {
-    display: flex;
-    flex-direction: column;
+.player-stats > div {
+    padding: 12px;
 
-    font-size: 10px;
+    border-radius: 12px;
+
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.player-stats small {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #7d817c;
+
+    font-size: 8px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 0.12em;
 }
 
-.stats b {
-    margin-top: 3px;
-
+.player-stats strong {
     font-family: "Russo One", sans-serif;
-    font-size: 28px;
+    font-size: 23px;
 }
 
-/* ================= MATCH ================= */
-
-.match-section {
-    background: var(--ink);
-    color: white;
+.player-ekon .player-image {
+    background: #30372a;
 }
 
-.match-head h2 {
-    color: white;
+.player-azamat .player-image {
+    background: #333;
+}
+
+.player-galym .player-image {
+    background: #513b28;
+}
+
+.player-shamil .player-image {
+    background: #283a34;
+}
+
+
+/* =========================
+   LIVE GOAL
+   ========================= */
+
+.goal-section {
+    background: #0d1110;
+    color: var(--white);
 }
 
 .stadium {
-    max-width: 1200px;
+    width: min(100%, var(--max-width));
     margin: auto;
+
+    padding: 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(184, 255, 53, 0.1),
+            transparent 35%
+        ),
+        #171c1b;
+
+    box-shadow: var(--shadow);
 }
 
 .scoreboard {
-    display: flex;
-    justify-content: space-between;
+    min-height: 70px;
+
+    margin-bottom: 18px;
+    padding: 0 25px;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    gap: 20px;
 
-    padding: 20px 25px;
+    border-radius: 15px;
 
-    background: #202323;
+    background: #080a0a;
+}
 
+.scoreboard span {
+    color: #8e938d;
+
+    font-size: 10px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 0.15em;
+}
+
+.scoreboard span:last-child {
+    text-align: right;
 }
 
 .scoreboard strong {
-    color: var(--lime);
+    color: var(--green);
+
     font-family: "Russo One", sans-serif;
-    font-size: 35px;
+    font-size: 25px;
 }
 
-.pitch {
-    height: 570px;
-
+.football-pitch {
     position: relative;
+
+    width: 100%;
+    min-height: 580px;
+
     overflow: hidden;
+
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 18px;
 
     background:
         repeating-linear-gradient(
             90deg,
-            #287344 0px,
-            #287344 70px,
-            #246b40 70px,
-            #246b40 140px
+            #173d24 0,
+            #173d24 80px,
+            #1b4729 80px,
+            #1b4729 160px
         );
-
-    border: 5px solid white;
 }
 
-.center-line {
-    position: absolute;
+.football-pitch::after {
+    content: "";
 
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            transparent 0,
+            rgba(0, 0, 0, 0.18) 100%
+        );
+
+    pointer-events: none;
+}
+
+.pitch-half {
+    position: absolute;
+    top: 16%;
+    right: 0;
+
+    width: 17%;
+    height: 68%;
+
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-right: 0;
+}
+
+.pitch-center-line {
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
 
-    width: 4px;
+    width: 2px;
 
-    background: rgba(255,255,255,.8);
+    background: rgba(255, 255, 255, 0.7);
+
+    transform: translateX(-50%);
 }
 
-.center-circle {
+.pitch-center-circle {
     position: absolute;
+    top: 50%;
+    left: 50%;
 
-    width: 170px;
-    height: 170px;
+    width: 145px;
+    height: 145px;
 
-    left: calc(50% - 85px);
-    top: calc(50% - 85px);
-
-    border: 4px solid rgba(255,255,255,.8);
+    border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 50%;
+
+    transform: translate(-50%, -50%);
 }
 
-.goal {
+.pitch-center-dot {
     position: absolute;
+    top: 50%;
+    left: 50%;
 
-    top: 36%;
+    width: 8px;
+    height: 8px;
 
-    width: 80px;
-    height: 160px;
+    border-radius: 50%;
 
-    border: 6px solid white;
+    background: white;
+
+    transform: translate(-50%, -50%);
 }
 
-.goal--left {
-    left: -6px;
-    border-left: none;
-}
-
-.goal--right {
-    right: -6px;
-    border-right: none;
-}
-
-.player {
+.goal-frame {
     position: absolute;
+    z-index: 3;
 
-    display: grid;
-    place-items: center;
+    width: 100px;
+    height: 180px;
+
+    border: 4px solid white;
+}
+
+.goal-frame-right {
+    top: 50%;
+    right: -4px;
+
+    border-right: 0;
+
+    transform: translateY(-50%);
+}
+
+.goal-net {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.13) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, 0.13) 1px,
+            transparent 1px
+        );
+
+    background-size: 15px 15px;
+}
+
+.match-player {
+    position: absolute;
+    z-index: 6;
 
     width: 62px;
     height: 62px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid white;
     border-radius: 50%;
 
+    background: var(--black);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+
+    transition: transform 0.3s ease;
+}
+
+.match-player span {
+    font-family: "Russo One", sans-serif;
+    font-size: 24px;
+}
+
+.match-player small {
+    position: absolute;
+    top: calc(100% + 8px);
+
+    white-space: nowrap;
+
+    font-size: 8px;
     font-weight: 900;
-
-    background: var(--lime);
-    color: var(--ink);
-
-    border: 4px solid white;
-
-    z-index: 5;
-
-    transition: 1s;
+    letter-spacing: 0.1em;
 }
 
-.player--shamil {
-    left: 4%;
-    top: calc(50% - 31px);
+.goalkeeper {
+    right: 9%;
+    top: 50%;
+
+    border-color: var(--yellow);
+
+    transform: translate(0, -50%);
 }
 
-.player--ekon {
-    right: 18%;
-    top: calc(50% - 31px);
+.striker {
+    left: 24%;
+    top: 50%;
+
+    border-color: var(--green);
+
+    transform: translate(0, -50%);
 }
 
 .match-ball {
     position: absolute;
-
-    left: 20%;
-    top: calc(50% - 20px);
-
-    font-size: 40px;
-
     z-index: 10;
 
-    transition: 1s;
+    left: calc(24% + 70px);
+    top: calc(50% - 20px);
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.35));
 }
 
-.goal-text,
-.celebration {
+.goal-message,
+.celebration-message {
     position: absolute;
+    z-index: 20;
 
     left: 50%;
-    top: 35%;
+    top: 25%;
 
-    transform: translate(-50%, -50%) scale(0);
-
-    font-family: "Russo One", sans-serif;
-
-    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.7);
 
     opacity: 0;
+
+    font-family: "Russo One", sans-serif;
+    text-align: center;
+
+    pointer-events: none;
 }
 
-.goal-text {
-    color: var(--lime);
-    font-size: clamp(45px, 8vw, 110px);
-    white-space: nowrap;
-
-    text-shadow: 0 8px 20px rgba(0,0,0,.4);
+.goal-message {
+    color: var(--green);
+    font-size: clamp(38px, 7vw, 85px);
 }
 
-.celebration {
-    top: 62%;
+.celebration-message {
+    top: 75%;
 
-    font-size: 45px;
     color: white;
+    font-size: 25px;
 }
 
-/* goal animation */
 
-.goal-scored .match-ball {
-    animation: shot 1.3s cubic-bezier(.2,.8,.2,1) forwards;
+/* GOAL ANIMATION */
+
+.goal-section.goal-scored .match-ball {
+    animation: shotToTopCorner 1.25s cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
 }
 
-.goal-scored .player--shamil {
-    animation: keeperSad 1.4s ease forwards;
+.goal-section.goal-scored .goalkeeper {
+    animation: goalkeeperReact 1.25s ease forwards;
 }
 
-.goal-scored .player--ekon {
-    animation: strikerCelebrate 1.8s ease forwards;
+.goal-section.goal-scored .striker {
+    animation: strikerCelebrate 1.3s ease forwards;
 }
 
-.goal-scored .goal-text {
-    animation: goalAppear 2.5s ease forwards;
+.goal-section.goal-scored .goal-message {
+    animation: goalPop 1.2s 0.95s ease forwards;
 }
 
-.goal-scored .celebration {
-    animation: celebrate 2.2s 1.4s ease forwards;
+.goal-section.goal-scored .celebration-message {
+    animation: celebrationPop 1.2s 1.35s ease forwards;
 }
 
-@keyframes shot {
+@keyframes shotToTopCorner {
     0% {
-        left: 20%;
-        top: 50%;
+        left: calc(24% + 70px);
+        top: calc(50% - 20px);
         transform: scale(1);
     }
 
-    55% {
-        left: 65%;
-        top: 35%;
-        transform: scale(1.15) rotate(500deg);
+    65% {
+        left: 70%;
+        top: 31%;
+        transform: scale(0.9) rotate(500deg);
     }
 
     100% {
-        left: 96%;
-        top: 8%;
-        transform: scale(.7) rotate(1000deg);
+        left: 92%;
+        top: 27%;
+        transform: scale(0.72) rotate(800deg);
     }
 }
 
-@keyframes keeperSad {
-    0% {
-        transform: translateX(0) rotate(0);
+@keyframes goalkeeperReact {
+    0%,
+    55% {
+        transform: translate(0, -50%);
     }
 
-    45% {
-        transform: translateX(40px) rotate(-15deg);
+    70% {
+        transform: translate(-35px, -65%) rotate(-18deg);
     }
 
     100% {
-        transform: translateX(0) rotate(10deg) scale(.9);
-        opacity: .6;
+        transform: translate(-55px, -78%) rotate(-25deg);
     }
 }
 
 @keyframes strikerCelebrate {
-    0% {
-        transform: translateX(0);
-    }
-
+    0%,
     45% {
-        transform: translateX(80px) scale(1.2);
+        transform: translate(0, -50%);
     }
 
-    70% {
-        transform: translateX(50px) translateY(-35px) rotate(-8deg);
-    }
-
-    100% {
-        transform: translateX(70px) translateY(0) scale(1.1);
-    }
-}
-
-@keyframes goalAppear {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
-    }
-
-    25% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1);
+    65% {
+        transform: translate(15px, -60%) rotate(-8deg);
     }
 
     80% {
-        opacity: 1;
+        transform: translate(-5px, -58%) rotate(8deg);
     }
 
     100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1.3);
+        transform: translate(10px, -60%) rotate(0);
     }
 }
 
-@keyframes celebrate {
+@keyframes goalPop {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%) scale(0.7);
     }
 
-    40% {
+    55% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.2);
+        transform: translate(-50%, -50%) scale(1.12);
     }
 
     100% {
@@ -615,528 +898,900 @@ section {
     }
 }
 
-/* ================= TACTICS ================= */
+@keyframes celebrationPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* =========================
+   TACTICS
+   ========================= */
 
 .tactics-section {
-    background: #e7e3d9;
+    background: #e8ebe5;
+    color: var(--black);
 }
 
 .tactics-board {
     position: relative;
 
-    max-width: 1100px;
-    height: 600px;
+    width: min(100%, 1100px);
+    min-height: 570px;
 
     margin: auto;
 
     overflow: hidden;
 
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 28px;
+
     background:
         repeating-linear-gradient(
             90deg,
-            #287344 0,
-            #287344 80px,
-            #246b40 80px,
-            #246b40 160px
+            #315f37 0,
+            #315f37 100px,
+            #396c3f 100px,
+            #396c3f 200px
         );
 
-    border: 7px solid white;
-    box-shadow: 0 25px 60px rgba(0,0,0,.2);
+    box-shadow: var(--shadow);
 }
 
 .tactics-board::before {
     content: "";
 
     position: absolute;
-
     inset: 30px;
 
-    border: 3px solid rgba(255,255,255,.7);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
 }
 
-.tactic-player {
+.tactic-lines {
     position: absolute;
+    inset: 0;
 
-    z-index: 5;
+    z-index: 1;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    transition: 1s;
+    pointer-events: none;
 }
 
-.tactic-player span {
-    display: grid;
-    place-items: center;
-
-    width: 60px;
-    height: 60px;
-
-    border-radius: 50%;
-
-    background: var(--lime);
-    border: 4px solid white;
-
-    font-weight: 900;
-    font-size: 22px;
-}
-
-.tactic-player b {
-    margin-top: 7px;
-
-    padding: 5px 8px;
-
-    background: rgba(0,0,0,.75);
-    color: white;
-
-    font-size: 11px;
-}
-
-.tactic-shamil {
-    left: 12%;
-    top: 43%;
-}
-
-.tactic-azamat {
-    left: 32%;
-    top: 27%;
-}
-
-.tactic-galym {
-    left: 55%;
-    top: 55%;
-}
-
-.tactic-ekon {
-    right: 12%;
-    top: 30%;
-}
-
-.tactic-ball {
-    position: absolute;
-    z-index: 10;
-
-    left: 14%;
-    top: 48%;
-
-    font-size: 35px;
-
-    transition:
-        left 1.1s ease-in-out,
-        top 1.1s ease-in-out,
-        transform .3s;
-}
-
-.pass-line {
+.tactic-line {
     position: absolute;
 
     height: 4px;
 
     transform-origin: left center;
 
-    background: var(--lime);
+    background: rgba(255, 255, 255, 0.45);
 
     opacity: 0;
 
-    z-index: 2;
+    transition: opacity 0.3s ease;
 }
 
-.line-one {
-    width: 220px;
-    left: 16%;
-    top: 46%;
-    transform: rotate(-25deg);
+.tactics-board.playing .tactic-line {
+    opacity: 1;
 }
 
-.line-two {
-    width: 270px;
-    left: 37%;
-    top: 35%;
-    transform: rotate(35deg);
+.tactic-player {
+    position: absolute;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+
+    transition: transform 0.3s ease;
 }
 
-.line-three {
-    width: 260px;
-    left: 60%;
-    top: 48%;
-    transform: rotate(-20deg);
+.tactic-circle {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid white;
+    border-radius: 50%;
+
+    background: var(--black);
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+    font-family: "Russo One", sans-serif;
+    font-size: 23px;
+}
+
+.tactic-player span {
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+}
+
+.tactic-shamil {
+    left: 9%;
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+.tactic-azamat {
+    left: 31%;
+    top: 30%;
+}
+
+.tactic-galym {
+    left: 52%;
+    top: 63%;
+}
+
+.tactic-ekon {
+    right: 10%;
+    top: 28%;
+}
+
+.tactic-ball {
+    position: absolute;
+    z-index: 8;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+    opacity: 0;
+
+    pointer-events: none;
 }
 
 .tactic-message {
     position: absolute;
-
     left: 50%;
     bottom: 25px;
 
+    z-index: 10;
+
+    padding: 10px 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+
     transform: translateX(-50%);
-
-    padding: 12px 20px;
-
-    background: var(--ink);
-    color: var(--lime);
-
-    font-family: "Russo One", sans-serif;
-
-    white-space: nowrap;
 }
 
-.tactics-board.playing .tactic-ball {
-    animation: tacticPass 4.5s ease-in-out forwards;
-}
 
-.tactics-board.playing .line-one {
-    animation: lineShow .6s .4s forwards;
-}
-
-.tactics-board.playing .line-two {
-    animation: lineShow .6s 1.7s forwards;
-}
-
-.tactics-board.playing .line-three {
-    animation: lineShow .6s 3s forwards;
-}
-
-.tactics-board.playing .tactic-message {
-    animation: tacticMessage 4.8s forwards;
-}
-
-@keyframes tacticPass {
-
-    0% {
-        left: 14%;
-        top: 48%;
-    }
-
-    24% {
-        left: 35%;
-        top: 31%;
-    }
-
-    50% {
-        left: 58%;
-        top: 59%;
-    }
-
-    75% {
-        left: 79%;
-        top: 35%;
-    }
-
-    100% {
-        left: 95%;
-        top: 18%;
-        transform: rotate(900deg) scale(.8);
-    }
-}
-
-@keyframes lineShow {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes tacticMessage {
-    0%, 10% {
-        content: "";
-    }
-
-    20% {
-        color: var(--lime);
-    }
-
-    30% {
-        color: white;
-    }
-
-    55% {
-        color: var(--lime);
-    }
-
-    100% {
-        color: var(--lime);
-    }
-}
-
-/* ================= MATCHES ================= */
+/* =========================
+   MATCHES
+   ========================= */
 
 .matches-section {
-    background: var(--cream);
+    background: var(--white);
+    color: var(--black);
 }
 
-.matches {
-    display: grid;
-    gap: 12px;
-
-    max-width: 1100px;
+.matches-list {
+    width: min(100%, var(--max-width));
     margin: auto;
 }
 
-.match {
+.match-row {
+    min-height: 100px;
+
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr 140px 1fr 100px;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 
-    padding: 25px;
-
-    background: white;
-
-    font-weight: 800;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.match strong {
+.match-row:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.match-team {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.match-team.opponent {
+    color: #777;
+}
+
+.match-row > strong {
+    text-align: center;
+
     font-family: "Russo One", sans-serif;
-    font-size: 35px;
+    font-size: 27px;
 }
 
-.match span:last-child {
+.match-row > small {
+    color: var(--green-dark);
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+
     text-align: right;
 }
 
-/* ================= GALLERY ================= */
+
+/* =========================
+   STATS
+   ========================= */
+
+.stats-section {
+    background: #101313;
+    color: white;
+}
+
+.big-stats {
+    width: min(100%, var(--max-width));
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.big-stat {
+    min-height: 260px;
+
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-right: 1px solid var(--line);
+}
+
+.big-stat:last-child {
+    border-right: 0;
+}
+
+.big-stat strong {
+    color: var(--green);
+
+    font-family: "Russo One", sans-serif;
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.9;
+}
+
+.big-stat span {
+    margin-top: 15px;
+
+    color: #858b85;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+}
+
+
+/* =========================
+   GALLERY
+   ========================= */
 
 .gallery-section {
-    background: var(--ink);
+    background: #0c0f0e;
     color: white;
 }
 
 .gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 300px;
+    width: min(100%, var(--max-width));
+    margin: auto;
 
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 280px 280px;
     gap: 15px;
 }
 
 .gallery-card {
     position: relative;
+
     overflow: hidden;
 
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 
-    padding: 25px;
+    padding: 28px;
 
-    background-position: center;
-    background-size: cover;
+    border-radius: 22px;
 
-    transition: transform .4s;
+    background:
+        linear-gradient(
+            135deg,
+            #33453b,
+            #131817
+        );
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
 }
 
 .gallery-card:hover {
-    transform: scale(.98);
+    transform: scale(0.985);
+    filter: brightness(1.15);
 }
 
-.gallery-card span {
+.gallery-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 35%,
+            rgba(184, 255, 53, 0.15)
+        );
+}
+
+.gallery-card > div {
     position: relative;
     z-index: 2;
 
-    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
-    background: var(--lime);
-    color: var(--ink);
+.gallery-card span {
+    color: var(--green);
 
+    font-size: 10px;
     font-weight: 900;
 }
 
-.gallery-one {
-    grid-row: span 2;
-
-    background-image:
-        linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.65)),
-        url("https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80");
+.gallery-card strong {
+    font-family: "Russo One", sans-serif;
+    font-size: 23px;
 }
 
-.gallery-two {
-    background-image:
-        linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.65)),
-        url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80");
+.gallery-main {
+    grid-row: 1 / 3;
+
+    background:
+        linear-gradient(
+            145deg,
+            #24382c,
+            #111
+        );
 }
 
-.gallery-three {
-    background-image:
-        linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.65)),
-        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80");
+.gallery-second {
+    background:
+        linear-gradient(
+            145deg,
+            #4a3b29,
+            #161412
+        );
 }
 
-/* ================= HISTORY ================= */
+.gallery-third {
+    background:
+        linear-gradient(
+            145deg,
+            #263b4a,
+            #111416
+        );
+}
+
+
+/* =========================
+   HISTORY
+   ========================= */
 
 .history-section {
-    max-width: 1100px;
-    margin: auto;
+    min-height: 750px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 70% 40%,
+            rgba(184, 255, 53, 0.12),
+            transparent 30%
+        ),
+        var(--green);
+
+    color: var(--black);
+}
+
+.history-section .eyebrow {
+    color: #18200b;
 }
 
 .history-section h2 {
     max-width: 1000px;
 
-    font-family: "Russo One", sans-serif;
-    font-size: clamp(45px, 7vw, 95px);
-    line-height: .95;
+    font-size: clamp(45px, 7vw, 105px);
 }
 
-.history-text {
-    max-width: 650px;
+.history-section p {
+    max-width: 500px;
+    margin-top: 40px;
 
-    margin-top: 45px;
-
-    font-size: 20px;
-    line-height: 1.7;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.65;
 }
 
-/* ================= FOOTER ================= */
 
-.quote {
-    padding: 100px 6vw;
+/* =========================
+   RANDOM EVENT
+   ========================= */
 
-    background: var(--lime);
+.event-section {
+    padding: 90px 6vw;
+
+    background: var(--white);
+    color: var(--black);
+}
+
+.event-box {
+    width: min(100%, 950px);
+    margin: auto;
+    padding: 70px;
+
+    border-radius: 30px;
+
+    background: #101313;
+    color: white;
 
     text-align: center;
+
+    box-shadow: var(--shadow);
 }
 
-.quote p {
+.event-box .eyebrow {
+    margin-bottom: 25px;
+}
+
+.event-box h2 {
+    margin-bottom: 40px;
+
+    font-size: clamp(32px, 5vw, 65px);
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+    min-height: 330px;
+
+    padding: 70px 6vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: #050606;
+    color: white;
+}
+
+.footer-logo {
     font-family: "Russo One", sans-serif;
-    font-size: clamp(35px, 6vw, 80px);
-    line-height: 1;
+    font-size: 25px;
 }
 
-.quote span {
-    color: var(--orange);
+.footer p {
+    max-width: 700px;
+
+    font-family: "Russo One", sans-serif;
+    font-size: clamp(32px, 5vw, 65px);
+    line-height: 0.95;
 }
 
-.quote small {
-    display: block;
+.footer p span {
+    color: var(--green);
+}
 
-    margin-top: 30px;
+.footer small {
+    color: #656b65;
 
+    font-size: 9px;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 0.2em;
 }
 
-/* ================= MOBILE ================= */
 
-@media (max-width: 900px) {
+/* =========================
+   SCROLLBAR
+   ========================= */
 
-    .cards {
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080909;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--green);
+}
+
+
+/* =========================
+   SELECTION
+   ========================= */
+
+::selection {
+    background: var(--green);
+    color: var(--black);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    section {
+        padding: 90px 5vw;
+    }
+
+    .players-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .ball {
-        right: 5%;
-        font-size: 70px;
+    .player-card {
+        min-height: 590px;
     }
 
-    .pitch {
-        height: 450px;
+    .big-stats {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .tactics-board {
-        height: 500px;
-    }
-}
-
-@media (max-width: 650px) {
-
-    section {
-        padding: 75px 5vw;
+    .big-stat:nth-child(2) {
+        border-right: 0;
     }
 
-    .hero {
-        min-height: 680px;
-        padding: 25px 5vw;
-    }
-
-    .hero__copy {
-        padding-top: 90px;
-    }
-
-    .hero h1 {
-        font-size: 58px;
-        letter-spacing: -2px;
-    }
-
-    .hero__copy > p:not(.eyebrow) {
-        font-size: 15px;
-    }
-
-    .section-head {
-        display: block;
-    }
-
-    .section-head h2 {
-        font-size: 60px;
-    }
-
-    .section-head .button {
-        margin-top: 30px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .photo {
-        height: 420px;
-    }
-
-    .scoreboard {
-        font-size: 11px;
-    }
-
-    .scoreboard strong {
-        font-size: 25px;
-    }
-
-    .pitch {
-        height: 390px;
-    }
-
-    .player {
-        width: 48px;
-        height: 48px;
-    }
-
-    .match-ball {
-        font-size: 30px;
-    }
-
-    .goal-text {
-        font-size: 45px;
-    }
-
-    .tactics-board {
-        height: 420px;
-    }
-
-    .tactic-player span {
-        width: 45px;
-        height: 45px;
-    }
-
-    .tactic-player b {
-        font-size: 8px;
+    .big-stat:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
     }
 
     .gallery {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, 260px);
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    section {
+        padding: 75px 20px;
     }
 
-    .gallery-one {
+    .section-heading {
+        margin-bottom: 40px;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 25px;
+    }
+
+    .section-heading > p {
+        text-align: left;
+    }
+
+    .hero {
+        min-height: 760px;
+
+        padding: 25px 20px 60px;
+    }
+
+    .hero-nav {
+        left: 20px;
+        right: 20px;
+        top: 22px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .hero-content {
+        margin-top: 80px;
+    }
+
+    .hero h1 {
+        font-size: clamp(52px, 15vw, 85px);
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-ball {
+        right: -35px;
+        top: 58%;
+
+        font-size: 170px;
+    }
+
+    .hero-number {
+        right: 10px;
+        bottom: 20px;
+
+        font-size: 170px;
+    }
+
+    .players-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .player-card {
+        min-height: auto;
+    }
+
+    .player-image {
+        height: 390px;
+    }
+
+    .football-pitch {
+        min-height: 430px;
+    }
+
+    .scoreboard {
+        grid-template-columns: 1fr auto 1fr;
+        padding: 0 12px;
+    }
+
+    .scoreboard span {
+        font-size: 8px;
+    }
+
+    .scoreboard strong {
+        font-size: 18px;
+    }
+
+    .pitch-center-circle {
+        width: 105px;
+        height: 105px;
+    }
+
+    .goal-frame {
+        width: 70px;
+        height: 130px;
+    }
+
+    .match-player {
+        width: 50px;
+        height: 50px;
+    }
+
+    .match-player span {
+        font-size: 19px;
+    }
+
+    .match-player small {
+        font-size: 7px;
+    }
+
+    .striker {
+        left: 18%;
+    }
+
+    .goalkeeper {
+        right: 7%;
+    }
+
+    .match-ball {
+        left: calc(18% + 60px);
+        font-size: 28px;
+    }
+
+    .tactics-board {
+        min-height: 460px;
+    }
+
+    .tactic-circle {
+        width: 50px;
+        height: 50px;
+
+        font-size: 18px;
+    }
+
+    .tactic-player span {
+        font-size: 7px;
+    }
+
+    .tactic-shamil {
+        left: 5%;
+    }
+
+    .tactic-azamat {
+        left: 28%;
+        top: 25%;
+    }
+
+    .tactic-galym {
+        left: 48%;
+        top: 65%;
+    }
+
+    .tactic-ekon {
+        right: 6%;
+        top: 24%;
+    }
+
+    .match-row {
+        grid-template-columns: 1fr auto;
+        gap: 8px 15px;
+
+        padding: 20px 0;
+    }
+
+    .match-row > strong {
+        text-align: right;
+    }
+
+    .match-team.opponent {
+        grid-column: 1;
+    }
+
+    .match-row > small {
+        grid-column: 2;
+        grid-row: 2;
+
+        text-align: right;
+    }
+
+    .big-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .big-stat {
+        min-height: 190px;
+        padding: 22px;
+    }
+
+    .big-stat strong {
+        font-size: 58px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: 260px 220px 220px;
+    }
+
+    .gallery-main {
         grid-row: auto;
     }
 
-    .match {
-        grid-template-columns: 1fr;
-        text-align: center;
+    .history-section {
+        min-height: 650px;
     }
 
-    .match span:last-child {
-        text-align: center;
+    .event-box {
+        padding: 45px 22px;
+    }
+
+    .footer {
+        min-height: 290px;
+        padding: 55px 20px;
+    }
+
+    .footer p {
+        font-size: 38px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .main-button {
+        width: 100%;
+        min-height: 52px;
+    }
+
+    .hero-ball {
+        top: 63%;
+        font-size: 135px;
+    }
+
+    .player-image {
+        height: 330px;
+    }
+
+    .football-pitch {
+        min-height: 380px;
+    }
+
+    .big-stat {
+        min-height: 160px;
+    }
+
+    .big-stat strong {
+        font-size: 48px;
+    }
+
+    .big-stat span {
+        font-size: 8px;
+    }
+
+    .footer p {
+        font-size: 32px;
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
