@@ -114,14 +114,19 @@ document.addEventListener("DOMContentLoaded", () => {
              * Ставим мяч обратно к Екону.
              */
 
-            if (matchBall) {
-                matchBall.style.animation = "none";
+             if (matchBall) {
 
-                void matchBall.offsetWidth;
+    /* Полностью сбрасываем старую inline-анимацию */
+    matchBall.style.animation = "";
 
-                matchBall.style.left = "";
-                matchBall.style.top = "";
-            }
+    /* Возвращаем мяч в исходную позицию */
+    matchBall.style.left = "";
+    matchBall.style.top = "";
+    matchBall.style.transform = "";
+
+    /* Даём браузеру применить сброс */
+    void matchBall.offsetWidth;
+}
 
             /*
              * Запускаем удар.
