@@ -1,12 +1,9 @@
 /* =========================================================
-   ФК БРАТВА — EXTRAS.CSS
-   Дополнительные эффекты и анимации
+   ФК БРАТВА — EXTRA EFFECTS
    ========================================================= */
 
 
-/* =========================
-   SCROLL REVEAL
-   ========================= */
+/* ================= SCROLL REVEAL ================= */
 
 .team-section,
 .goal-section,
@@ -17,42 +14,38 @@
 .history-section,
 .event-section {
     opacity: 0;
-    transform: translateY(35px);
+    transform: translateY(45px);
     transition:
         opacity 0.8s ease,
         transform 0.8s ease;
 }
 
 .section-visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
-/* =========================
-   HERO APPEAR
-   ========================= */
+/* ================= HERO ANIMATIONS ================= */
 
-.hero-kicker {
-    animation: heroAppear 0.8s ease both;
+.hero-content {
+    animation: heroContentIn 1s ease forwards;
 }
 
-.hero h1 {
-    animation: heroTitleAppear 1s 0.15s ease both;
+.hero-ball {
+    animation:
+        heroBallFloat 4s ease-in-out infinite,
+        heroBallIn 1s ease forwards;
 }
 
-.hero-content p {
-    animation: heroAppear 0.8s 0.35s ease both;
+.hero-number {
+    animation: heroNumberIn 1.2s ease forwards;
 }
 
-.hero-content .main-button {
-    animation: heroAppear 0.8s 0.5s ease both;
-}
-
-@keyframes heroAppear {
+@keyframes heroContentIn {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(30px);
     }
 
     to {
@@ -61,528 +54,695 @@
     }
 }
 
-@keyframes heroTitleAppear {
+@keyframes heroBallIn {
     from {
         opacity: 0;
-        transform: translateY(45px);
-        letter-spacing: 0.03em;
+        transform: translateY(40px) rotate(-30deg);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
-        letter-spacing: -0.055em;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@keyframes heroBallFloat {
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -18px;
+    }
+}
+
+@keyframes heroNumberIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
 
-/* =========================
-   PLAYER CARDS
-   ========================= */
+/* ================= PLAYER CARDS ================= */
 
-.player-card::before {
+.player-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.player-card::after {
     content: "";
-
     position: absolute;
-    z-index: 5;
-
-    top: 0;
-    left: -120%;
-
-    width: 70%;
-    height: 100%;
-
+    inset: -100%;
     background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.15),
-        transparent
+        120deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.16) 50%,
+        transparent 60%
     );
-
-    transform: skewX(-20deg);
-
-    transition: left 0.7s ease;
-
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
     pointer-events: none;
 }
 
-.player-card:hover::before {
-    left: 150%;
+.player-card:hover::after {
+    transform: translateX(100%);
 }
 
-.player-card .player-role {
-    transition: color 0.3s ease;
+.player-card:hover .player-image img {
+    transform: scale(1.05);
 }
 
-.player-card:hover .player-role {
-    color: var(--green-dark);
+.player-image img {
+    transition: transform 0.6s ease;
 }
 
-.player-card:hover .player-number {
-    color: var(--green);
-}
-
-
-/* =========================
-   PLAYER STATS HOVER
-   ========================= */
-
-.player-stats > div {
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.player-card:hover .player-stats > div {
-    transform: translateY(-3px);
-}
-
-.player-card:hover .player-stats > div:hover {
-    background: rgba(184, 255, 53, 0.2);
+.player-card.player-selected {
+    transform: translateY(-8px);
 }
 
 
-/* =========================
-   LIVE MATCH — ATMOSPHERE
-   ========================= */
+/* ================= LIVE MATCH ================= */
+
+.goal-section {
+    position: relative;
+}
 
 .stadium {
     position: relative;
 }
 
-.stadium::before {
+.football-pitch {
+    position: relative;
+    overflow: hidden;
+}
+
+.football-pitch::before {
     content: "";
-
     position: absolute;
-    inset: 15px;
-
-    border-radius: 25px;
-
-    box-shadow:
-        inset 0 0 80px rgba(184, 255, 53, 0.04);
-
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255, 255, 255, 0.06),
+            transparent 45%
+        );
     pointer-events: none;
 }
 
-.football-pitch {
-    box-shadow:
-        inset 0 0 70px rgba(0, 0, 0, 0.25),
-        0 15px 40px rgba(0, 0, 0, 0.25);
-}
-
-
-/* =========================
-   GOAL LIGHT EFFECT
-   ========================= */
-
 .goal-section.goal-scored .football-pitch {
-    animation: pitchGoalFlash 0.8s ease;
+    animation: pitchFlash 0.5s ease;
 }
 
-@keyframes pitchGoalFlash {
+.goal-section.goal-scored .goal-net {
+    animation: netShake 0.7s ease;
+}
+
+@keyframes pitchFlash {
     0% {
         filter: brightness(1);
     }
 
-    35% {
-        filter: brightness(1.45) saturate(1.35);
+    30% {
+        filter: brightness(1.35);
     }
 
     100% {
         filter: brightness(1);
     }
-}
-
-.goal-section.goal-scored .goal-net {
-    animation: netShake 0.45s 0.85s ease;
 }
 
 @keyframes netShake {
     0%,
     100% {
-        transform: translateX(0);
+        transform: scale(1);
     }
 
     20% {
-        transform: translateX(-8px);
+        transform: scale(1.04) translateX(4px);
     }
 
     40% {
-        transform: translateX(7px);
+        transform: scale(0.98) translateX(-4px);
     }
 
     60% {
-        transform: translateX(-5px);
+        transform: scale(1.03) translateX(3px);
     }
 
     80% {
-        transform: translateX(3px);
+        transform: scale(0.99) translateX(-2px);
     }
 }
 
 
-/* =========================
-   PLAYER REACTION
-   ========================= */
+/* ================= GOAL ANIMATION ================= */
+
+.goal-section.goal-scored .match-ball {
+    animation: shotToTopCorner 1.25s cubic-bezier(0.35, 0.05, 0.2, 1) forwards;
+}
 
 .goal-section.goal-scored .goalkeeper {
-    filter: brightness(1.1);
+    animation: goalkeeperReact 1s ease forwards;
 }
 
 .goal-section.goal-scored .striker {
-    filter: brightness(1.2);
+    animation: strikerCelebrate 1.2s ease forwards;
 }
 
-
-/* =========================
-   TACTICS BOARD
-   ========================= */
-
-.tactics-board.playing {
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.35),
-        0 0 45px rgba(184, 255, 53, 0.12);
+.goal-section.goal-scored .goal-message {
+    animation: goalPop 0.8s ease forwards;
 }
 
-.tactics-board.playing .tactic-circle {
-    animation: playerPulse 0.7s ease;
+.goal-section.goal-scored .celebration-message {
+    animation: celebrationPop 1s ease forwards;
 }
 
-@keyframes playerPulse {
+@keyframes shotToTopCorner {
     0% {
-        transform: scale(1);
+        left: 24%;
+        top: 62%;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
     }
 
-    50% {
-        transform: scale(1.12);
+    35% {
+        left: 48%;
+        top: 47%;
+        transform: translate(-50%, -50%) rotate(180deg) scale(1.05);
+    }
+
+    70% {
+        left: 73%;
+        top: 28%;
+        transform: translate(-50%, -50%) rotate(360deg) scale(0.95);
     }
 
     100% {
-        transform: scale(1);
+        left: 91%;
+        top: 18%;
+        transform: translate(-50%, -50%) rotate(540deg) scale(0.85);
+    }
+}
+
+@keyframes goalkeeperReact {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    45% {
+        transform: translate(-50%, -50%) translateX(-8px) rotate(-4deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateX(35px) rotate(12deg);
+    }
+}
+
+@keyframes strikerCelebrate {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    35% {
+        transform: translate(-50%, -65%) scale(1.05);
+    }
+
+    65% {
+        transform: translate(-50%, -75%) scale(1.12) rotate(-4deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.08) rotate(3deg);
+    }
+}
+
+@keyframes goalPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes celebrationPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 20px) scale(0.5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
     }
 }
 
 
-/* =========================
-   TACTIC LINES
-   ========================= */
+/* ================= TACTICS ================= */
 
-.tactic-line {
-    overflow: hidden;
+.tactics-board {
+    position: relative;
 }
 
-.tactics-board.playing .tactic-line::after {
-    content: "";
-
-    position: absolute;
-    left: -30%;
-
-    width: 30%;
-    height: 100%;
-
-    background: var(--green);
-
-    box-shadow: 0 0 12px var(--green);
-
-    animation: lineTravel 0.9s linear infinite;
+.tactics-board.playing {
+    box-shadow:
+        0 0 40px rgba(255, 255, 255, 0.08),
+        inset 0 0 40px rgba(255, 255, 255, 0.04);
 }
 
-@keyframes lineTravel {
-    from {
-        left: -30%;
-    }
-
-    to {
-        left: 110%;
-    }
+.tactic-player {
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
 }
 
+.tactic-player.active {
+    transform: translate(-50%, -50%) scale(1.15);
+    filter: brightness(1.3);
+}
 
-/* =========================
-   TACTIC BALL
-   ========================= */
+.tactic-circle {
+    transition:
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+}
+
+.tactic-player.active .tactic-circle {
+    box-shadow:
+        0 0 0 5px rgba(255, 255, 255, 0.08),
+        0 0 25px rgba(255, 255, 255, 0.25);
+}
 
 .tactic-ball {
-    filter: drop-shadow(
-        0 7px 8px rgba(0, 0, 0, 0.4)
-    );
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.35));
 }
 
 .tactics-board.playing .tactic-ball {
-    opacity: 1;
+    animation: tacticBallGlow 0.6s ease-in-out infinite alternate;
 }
 
+@keyframes tacticBallGlow {
+    from {
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+    }
 
-/* =========================
-   TACTIC MESSAGE
-   ========================= */
+    to {
+        filter:
+            drop-shadow(0 0 15px rgba(255, 255, 255, 0.35))
+            drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+    }
+}
+
+.tactic-line {
+    transform-origin: left center;
+    transition:
+        width 0.5s ease,
+        transform 0.5s ease,
+        opacity 0.4s ease;
+}
+
+.tactics-board.playing .tactic-line::after {
+    animation: lineMove 1s linear infinite;
+}
+
+@keyframes lineMove {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
 
 .tactic-message {
     transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
+        opacity 0.4s ease,
+        transform 0.4s ease;
 }
 
 .tactics-board.playing .tactic-message {
-    background: var(--green);
-    color: var(--black);
+    animation: tacticMessagePulse 1.2s ease-in-out infinite alternate;
+}
 
-    transform: translateX(-50%) scale(1.03);
+@keyframes tacticMessagePulse {
+    from {
+        opacity: 0.65;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 
-/* =========================
-   MATCH ROW HOVER
-   ========================= */
+/* ================= MATCHES ================= */
 
 .match-row {
     transition:
-        padding 0.3s ease,
-        background 0.3s ease;
+        transform 0.3s ease,
+        background 0.3s ease,
+        padding 0.3s ease;
 }
 
 .match-row:hover {
-    padding-left: 18px;
-    padding-right: 18px;
-
-    background: rgba(184, 255, 53, 0.08);
-}
-
-.match-row:hover > strong {
-    color: var(--green-dark);
+    transform: translateX(8px);
 }
 
 
-/* =========================
-   BIG STATS
-   ========================= */
+/* ================= BIG STATS ================= */
 
 .big-stat {
-    position: relative;
-    overflow: hidden;
-
     transition:
-        background 0.3s ease,
-        transform 0.3s ease;
-}
-
-.big-stat::after {
-    content: "";
-
-    position: absolute;
-
-    width: 120px;
-    height: 120px;
-
-    right: -50px;
-    bottom: -50px;
-
-    border-radius: 50%;
-
-    background: rgba(184, 255, 53, 0.06);
-
-    transition:
-        transform 0.5s ease;
+        transform 0.35s ease,
+        opacity 0.35s ease;
 }
 
 .big-stat:hover {
-    background: rgba(255, 255, 255, 0.025);
+    transform: translateY(-8px);
 }
 
-.big-stat:hover::after {
-    transform: scale(2.5);
+.big-stat strong {
+    transition: transform 0.35s ease;
+}
+
+.big-stat:hover strong {
+    transform: scale(1.08);
 }
 
 
-/* =========================
-   GALLERY HOVER
-   ========================= */
+/* =========================================================
+   GALLERY MEDIA
+   ========================================================= */
 
-.gallery-card::after {
-    content: "";
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+}
 
+/* Фото и видео полностью заполняют карточку */
+.gallery-media {
     position: absolute;
     inset: 0;
 
-    background:
-        linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.55),
-            transparent 55%
-        );
+    width: 100%;
+    height: 100%;
 
-    opacity: 0.7;
+    object-fit: cover;
+    object-position: center;
 
-    transition: opacity 0.3s ease;
+    display: block;
+
+    z-index: 1;
+
+    transition:
+        transform 0.6s ease,
+        filter 0.6s ease;
 }
 
-.gallery-card:hover::after {
-    opacity: 1;
+/* Затемнение поверх медиа */
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    padding: 28px;
+
+    color: white;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78),
+        rgba(0, 0, 0, 0.18) 55%,
+        transparent 80%
+    );
+
+    pointer-events: none;
 }
 
-.gallery-card > div {
-    transition: transform 0.3s ease;
+.gallery-overlay span {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    opacity: 0.75;
+
+    margin-bottom: 6px;
 }
 
-.gallery-card:hover > div {
-    transform: translateY(-5px);
+.gallery-overlay strong {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Эффект при наведении */
+.gallery-card:hover .gallery-media {
+    transform: scale(1.06);
+    filter: brightness(1.08);
+}
+
+.gallery-card:hover .gallery-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.2) 60%,
+        transparent 85%
+    );
 }
 
 
-/* =========================
-   HISTORY
-   ========================= */
+/* ================= GALLERY INDIVIDUAL POSITION ================= */
 
-.history-section::after {
-    content: "BRATVA";
+.gallery-main .gallery-media {
+    object-position: center center;
+}
+
+.gallery-second .gallery-media {
+    object-position: center center;
+}
+
+.gallery-third .gallery-media {
+    object-position: center center;
+}
+
+
+/* ================= HISTORY ================= */
+
+.history-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.history-section::before {
+    content: "БРАТВА";
 
     position: absolute;
+    left: 50%;
+    top: 50%;
 
-    right: -20px;
-    bottom: -70px;
-
-    color: rgba(0, 0, 0, 0.045);
+    transform: translate(-50%, -50%);
 
     font-family: "Russo One", sans-serif;
-    font-size: clamp(100px, 20vw, 300px);
 
-    line-height: 1;
+    font-size: clamp(90px, 18vw, 280px);
+
+    opacity: 0.025;
+
+    white-space: nowrap;
 
     pointer-events: none;
 }
 
 
-/* =========================
-   RANDOM EVENT
-   ========================= */
+/* ================= RANDOM EVENT ================= */
 
-.event-box {
+.event-section {
     position: relative;
     overflow: hidden;
 }
 
-.event-box::before {
+.event-section::before {
     content: "⚽";
 
     position: absolute;
 
-    right: -40px;
-    top: -70px;
+    right: 7%;
+    top: 50%;
 
-    font-size: 220px;
+    transform: translateY(-50%);
 
-    opacity: 0.035;
+    font-size: 150px;
 
-    transform: rotate(15deg);
+    opacity: 0.04;
 
-    transition:
-        transform 0.6s ease;
+    pointer-events: none;
+
+    animation: randomBallFloat 4s ease-in-out infinite;
 }
 
-.event-box:hover::before {
-    transform:
-        rotate(35deg)
-        scale(1.1);
+@keyframes randomBallFloat {
+    0%,
+    100% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(calc(-50% - 15px)) rotate(15deg);
+    }
 }
 
 #randomEvent {
-    min-height: 1.2em;
-
     transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
-.random-changing {
+#randomEvent.random-changing {
     opacity: 0;
     transform: translateY(10px);
 }
 
 
-/* =========================
-   FOOTER
-   ========================= */
+/* ================= BUTTON RIPPLE ================= */
+
+.main-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-ripple {
+    position: absolute;
+
+    border-radius: 50%;
+
+    transform: scale(0);
+
+    animation: buttonRipple 0.6s ease-out;
+
+    pointer-events: none;
+
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes buttonRipple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+
+/* ================= FOOTER ================= */
 
 .footer-logo {
     transition:
-        color 0.3s ease;
+        letter-spacing 0.4s ease,
+        transform 0.4s ease;
 }
 
 .footer-logo:hover {
-    color: var(--green);
-}
-
-.footer small {
-    transition: color 0.3s ease;
-}
-
-.footer:hover small {
-    color: #929892;
+    letter-spacing: 3px;
+    transform: translateY(-2px);
 }
 
 
-/* =========================
-   FOCUS
-   ========================= */
+/* ================= FOCUS ================= */
 
 button:focus-visible,
-a:focus-visible,
-.player-card:focus-visible {
-    outline: 3px solid var(--green);
+a:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.65);
     outline-offset: 4px;
 }
 
 
-/* =========================
-   MOBILE EXTRAS
-   ========================= */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 700px) {
 
-    .player-card:hover {
-        transform: translateY(-5px);
+    .gallery-overlay {
+        padding: 20px;
     }
 
-    .match-row:hover {
-        padding-left: 8px;
-        padding-right: 8px;
+    .gallery-overlay strong {
+        font-size: 17px;
     }
 
-    .history-section::after {
-        right: -60px;
-        bottom: -30px;
-
-        font-size: 130px;
+    .gallery-overlay span {
+        font-size: 10px;
     }
 
-    .event-box::before {
-        font-size: 150px;
+    .event-section::before {
+        font-size: 100px;
+        right: 2%;
+    }
+
+    .history-section::before {
+        font-size: 90px;
     }
 }
 
 
-/* =========================
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 420px) {
+
+    .gallery-overlay {
+        padding: 16px;
+    }
+
+    .gallery-overlay strong {
+        font-size: 15px;
+    }
+
+    .gallery-overlay span {
+        margin-bottom: 3px;
+    }
+
+}
+
+
+/* =========================================================
    REDUCED MOTION
-   ========================= */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .team-section,
-    .goal-section,
-    .tactics-section,
-    .matches-section,
-    .stats-section,
-    .gallery-section,
-    .history-section,
-    .event-section {
-        opacity: 1;
-        transform: none;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 
-    .player-card::before,
-    .tactic-line::after,
-    .event-box::before {
-        display: none;
-    }
 }
