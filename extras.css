@@ -1,12 +1,588 @@
-.cards { grid-template-columns: repeat(4, 1fr); }
-.card--ekon { background: var(--lime); border-top: 8px solid var(--ink); }
-.card--ekon .role { color: #3d4b00; }
-.card--ekon .card__number { color: var(--orange); }
-.card--azamat .photo img { object-position: center 43%; }
-.card--shamil .photo img { object-position: 68% 42%; }
-.card--galym .photo img { object-fit: contain; object-position: center; filter: none; }
-.card--galym .photo { background: #241612; }
-.card--ekon .photo img { object-fit: contain; object-position: center top; filter: none; }
-.card--ekon .photo { background: #263300; }
-@media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+/* =========================================================
+   ФК БРАТВА — EXTRAS.CSS
+   Дополнительные эффекты и анимации
+   ========================================================= */
+
+
+/* =========================
+   SCROLL REVEAL
+   ========================= */
+
+.team-section,
+.goal-section,
+.tactics-section,
+.matches-section,
+.stats-section,
+.gallery-section,
+.history-section,
+.event-section {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.section-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+
+/* =========================
+   HERO APPEAR
+   ========================= */
+
+.hero-kicker {
+    animation: heroAppear 0.8s ease both;
+}
+
+.hero h1 {
+    animation: heroTitleAppear 1s 0.15s ease both;
+}
+
+.hero-content p {
+    animation: heroAppear 0.8s 0.35s ease both;
+}
+
+.hero-content .main-button {
+    animation: heroAppear 0.8s 0.5s ease both;
+}
+
+@keyframes heroAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroTitleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+        letter-spacing: 0.03em;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: -0.055em;
+    }
+}
+
+
+/* =========================
+   PLAYER CARDS
+   ========================= */
+
+.player-card::before {
+    content: "";
+
+    position: absolute;
+    z-index: 5;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.7s ease;
+
+    pointer-events: none;
+}
+
+.player-card:hover::before {
+    left: 150%;
+}
+
+.player-card .player-role {
+    transition: color 0.3s ease;
+}
+
+.player-card:hover .player-role {
+    color: var(--green-dark);
+}
+
+.player-card:hover .player-number {
+    color: var(--green);
+}
+
+
+/* =========================
+   PLAYER STATS HOVER
+   ========================= */
+
+.player-stats > div {
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.player-card:hover .player-stats > div {
+    transform: translateY(-3px);
+}
+
+.player-card:hover .player-stats > div:hover {
+    background: rgba(184, 255, 53, 0.2);
+}
+
+
+/* =========================
+   LIVE MATCH — ATMOSPHERE
+   ========================= */
+
+.stadium {
+    position: relative;
+}
+
+.stadium::before {
+    content: "";
+
+    position: absolute;
+    inset: 15px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        inset 0 0 80px rgba(184, 255, 53, 0.04);
+
+    pointer-events: none;
+}
+
+.football-pitch {
+    box-shadow:
+        inset 0 0 70px rgba(0, 0, 0, 0.25),
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   GOAL LIGHT EFFECT
+   ========================= */
+
+.goal-section.goal-scored .football-pitch {
+    animation: pitchGoalFlash 0.8s ease;
+}
+
+@keyframes pitchGoalFlash {
+    0% {
+        filter: brightness(1);
+    }
+
+    35% {
+        filter: brightness(1.45) saturate(1.35);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+.goal-section.goal-scored .goal-net {
+    animation: netShake 0.45s 0.85s ease;
+}
+
+@keyframes netShake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(7px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(3px);
+    }
+}
+
+
+/* =========================
+   PLAYER REACTION
+   ========================= */
+
+.goal-section.goal-scored .goalkeeper {
+    filter: brightness(1.1);
+}
+
+.goal-section.goal-scored .striker {
+    filter: brightness(1.2);
+}
+
+
+/* =========================
+   TACTICS BOARD
+   ========================= */
+
+.tactics-board.playing {
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        0 0 45px rgba(184, 255, 53, 0.12);
+}
+
+.tactics-board.playing .tactic-circle {
+    animation: playerPulse 0.7s ease;
+}
+
+@keyframes playerPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   TACTIC LINES
+   ========================= */
+
+.tactic-line {
+    overflow: hidden;
+}
+
+.tactics-board.playing .tactic-line::after {
+    content: "";
+
+    position: absolute;
+    left: -30%;
+
+    width: 30%;
+    height: 100%;
+
+    background: var(--green);
+
+    box-shadow: 0 0 12px var(--green);
+
+    animation: lineTravel 0.9s linear infinite;
+}
+
+@keyframes lineTravel {
+    from {
+        left: -30%;
+    }
+
+    to {
+        left: 110%;
+    }
+}
+
+
+/* =========================
+   TACTIC BALL
+   ========================= */
+
+.tactic-ball {
+    filter: drop-shadow(
+        0 7px 8px rgba(0, 0, 0, 0.4)
+    );
+}
+
+.tactics-board.playing .tactic-ball {
+    opacity: 1;
+}
+
+
+/* =========================
+   TACTIC MESSAGE
+   ========================= */
+
+.tactic-message {
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.tactics-board.playing .tactic-message {
+    background: var(--green);
+    color: var(--black);
+
+    transform: translateX(-50%) scale(1.03);
+}
+
+
+/* =========================
+   MATCH ROW HOVER
+   ========================= */
+
+.match-row {
+    transition:
+        padding 0.3s ease,
+        background 0.3s ease;
+}
+
+.match-row:hover {
+    padding-left: 18px;
+    padding-right: 18px;
+
+    background: rgba(184, 255, 53, 0.08);
+}
+
+.match-row:hover > strong {
+    color: var(--green-dark);
+}
+
+
+/* =========================
+   BIG STATS
+   ========================= */
+
+.big-stat {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.big-stat::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: -50px;
+    bottom: -50px;
+
+    border-radius: 50%;
+
+    background: rgba(184, 255, 53, 0.06);
+
+    transition:
+        transform 0.5s ease;
+}
+
+.big-stat:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.big-stat:hover::after {
+    transform: scale(2.5);
+}
+
+
+/* =========================
+   GALLERY HOVER
+   ========================= */
+
+.gallery-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.55),
+            transparent 55%
+        );
+
+    opacity: 0.7;
+
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover::after {
+    opacity: 1;
+}
+
+.gallery-card > div {
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover > div {
+    transform: translateY(-5px);
+}
+
+
+/* =========================
+   HISTORY
+   ========================= */
+
+.history-section::after {
+    content: "BRATVA";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -70px;
+
+    color: rgba(0, 0, 0, 0.045);
+
+    font-family: "Russo One", sans-serif;
+    font-size: clamp(100px, 20vw, 300px);
+
+    line-height: 1;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   RANDOM EVENT
+   ========================= */
+
+.event-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.event-box::before {
+    content: "⚽";
+
+    position: absolute;
+
+    right: -40px;
+    top: -70px;
+
+    font-size: 220px;
+
+    opacity: 0.035;
+
+    transform: rotate(15deg);
+
+    transition:
+        transform 0.6s ease;
+}
+
+.event-box:hover::before {
+    transform:
+        rotate(35deg)
+        scale(1.1);
+}
+
+#randomEvent {
+    min-height: 1.2em;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.random-changing {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer-logo {
+    transition:
+        color 0.3s ease;
+}
+
+.footer-logo:hover {
+    color: var(--green);
+}
+
+.footer small {
+    transition: color 0.3s ease;
+}
+
+.footer:hover small {
+    color: #929892;
+}
+
+
+/* =========================
+   FOCUS
+   ========================= */
+
+button:focus-visible,
+a:focus-visible,
+.player-card:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 4px;
+}
+
+
+/* =========================
+   MOBILE EXTRAS
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .player-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .match-row:hover {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .history-section::after {
+        right: -60px;
+        bottom: -30px;
+
+        font-size: 130px;
+    }
+
+    .event-box::before {
+        font-size: 150px;
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .team-section,
+    .goal-section,
+    .tactics-section,
+    .matches-section,
+    .stats-section,
+    .gallery-section,
+    .history-section,
+    .event-section {
+        opacity: 1;
+        transform: none;
+    }
+
+    .player-card::before,
+    .tactic-line::after,
+    .event-box::before {
+        display: none;
+    }
+}
