@@ -182,34 +182,134 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 /* =====================================================
-   4. ТАКТИКА
+   4. ТАКТИКА — ПАСЫ
    ===================================================== */
 
-const tacticsBoard = document.querySelector(".tactics-board");
+const tacticButton =
+    document.querySelector("#tacticButton");
 
-if (tacticsBoard) {
+const tacticsBoard =
+    document.querySelector("#tacticsBoard");
 
-    const tacticPlayers =
-        tacticsBoard.querySelectorAll(".tactic-player");
+const tacticBall =
+    document.querySelector("#tacticBall");
 
-    tacticPlayers.forEach((player, index) => {
+const tacticMessage =
+    document.querySelector("#tacticMessage");
 
-        player.addEventListener("click", () => {
+const tacticPlayers =
+    document.querySelectorAll(".tactic-player");
 
-            tacticPlayers.forEach((item) => {
-                item.classList.remove("active");
-            });
+if (
+    tacticButton &&
+    tacticsBoard &&
+    tacticBall
+) {
 
-            player.classList.add("active");
+    tacticButton.addEventListener("click", () => {
 
-            tacticsBoard.classList.add("playing");
+        /* Защита от повторного запуска */
+        if (tacticsBoard.classList.contains("playing")) {
+            return;
+        }
 
-            setTimeout(() => {
-                tacticsBoard.classList.remove("playing");
-            }, 2500);
+        tacticsBoard.classList.add("playing");
 
+        /* Начальная позиция */
+        tacticBall.style.transition = "none";
+
+        tacticBall.style.left = "18%";
+        tacticBall.style.top = "72%";
+
+        /* Сбрасываем активных игроков */
+        tacticPlayers.forEach((player) => {
+            player.classList.remove("active");
         });
 
+        if (tacticMessage) {
+            tacticMessage.textContent = "ШАМИЛЬ → АЗИК";
+        }
+
+        /* Координаты пасов */
+        const passes = [
+            {
+                player: ".tactic-shamil",
+                x: "38%",
+                y: "58%",
+                text: "ШАМИЛЬ → АЗИК"
+            },
+            {
+                player: ".tactic-azamat",
+                x: "58%",
+                y: "42%",
+                text: "АЗИК → ГАЛЫМ"
+            },
+            {
+                player: ".tactic-galym",
+                x: "78%",
+                y: "30%",
+                text: "ГАЛЫМ → ЕКОН"
+            },
+            {
+                player: ".tactic-ekon",
+                x: "88%",
+                y: "22%",
+                text: "ЕКОН ⚽ ГООООЛ!"
+            }
+        ];
+
+        let index = 0;
+
+        function nextPass() {
+
+            if (index >= passes.length) {
+
+                setTimeout(() => {
+
+                    tacticsBoard.classList.remove(
+                        "playing"
+                    );
+
+                    tacticPlayers.forEach((player) => {
+                        player.classList.remove("active");
+                    });
+
+                }, 1200);
+
+                return;
+            }
+
+            const pass = passes[index];
+
+            const player =
+                tacticsBoard.querySelector(pass.player);
+
+            if (player) {
+
+                tacticPlayers.forEach((item) => {
+                    item.classList.remove("active");
+                });
+
+                player.classList.add("active");
+            }
+
+            if (tacticMessage) {
+                tacticMessage.textContent =
+                    pass.text;
+            }
+
+            tacticBall.style.transition =
+                "left 0.65s cubic-bezier(0.4, 0, 0.2, 1), top 0.65s cubic-bezier(0.4, 0, 0.2, 1)";
+
+            tacticBall.style.left = pass.x;
+            tacticBall.style.top = pass.y;
+
+            index++;
+
+            setTimeout(nextPass, 700);
+        }
+
+        nextPass();
     });
 }
   
