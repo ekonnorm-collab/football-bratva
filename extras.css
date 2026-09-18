@@ -747,3 +747,45 @@ a:focus-visible {
     filter:
         drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
 }
+/* =====================================================
+   ЛИНИЯ ПАСА
+   ===================================================== */
+
+.tactic-pass-line {
+    position: absolute;
+
+    height: 3px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    transform-origin: left center;
+
+    z-index: 15;
+
+    pointer-events: none;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.7),
+        0 0 18px rgba(255, 255, 255, 0.35);
+
+    animation: passLineAppear 0.65s ease-out forwards;
+}
+
+@keyframes passLineAppear {
+
+    0% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.15;
+        transform: scaleX(1);
+    }
+}
