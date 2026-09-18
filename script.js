@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
        ===================================================== */
 
     const revealItems = document.querySelectorAll(
-        ".section-title, .player-card, .match-card, .stat-card, .history-item, .gallery-item, .tactic-step"
+        ".section-heading, .player-card, .match-row, .big-stat, .gallery-card, .history-section, .event-section, .footer"
     );
 
     const revealObserver = new IntersectionObserver(
@@ -50,35 +50,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const pitchWidth = pitch.clientWidth;
             const pitchHeight = pitch.clientHeight;
 
-            /*
-             * НАЧАЛО:
-             * мяч находится возле Екона
-             */
             const startX = pitchWidth * 0.24 + 70;
             const startY = pitchHeight * 0.50 - 20;
 
-            /*
-             * КОНЕЦ:
-             * верхний угол ворот.
-             *
-             * Раньше было 18%, из-за этого мяч
-             * улетал выше ворот.
-             */
             const endX = pitchWidth * 0.89;
             const endY = pitchHeight * 0.40;
 
-            /* Отключаем старую CSS-анимацию */
             matchBall.style.animation = "none";
 
-            /* Сбрасываем старое положение */
             matchBall.style.left = `${startX}px`;
             matchBall.style.top = `${startY}px`;
-            matchBall.style.transform = "translate(0, 0) scale(1) rotate(0deg)";
 
-            /*
-             * Небольшая пауза, чтобы браузер
-             * точно применил начальную позицию
-             */
+            matchBall.style.transform =
+                "translate(0, 0) scale(1) rotate(0deg)";
+
             void matchBall.offsetWidth;
 
             const duration = 1400;
@@ -94,22 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     progress = 1;
                 }
 
-                /*
-                 * Плавное ускорение → замедление
-                 */
-                const eased = 1 - Math.pow(1 - progress, 3);
+                const eased =
+                    1 - Math.pow(1 - progress, 3);
 
-                /*
-                 * Основное движение
-                 */
-                const x = startX + (endX - startX) * eased;
+                const x =
+                    startX +
+                    (endX - startX) * eased;
 
-                /*
-                 * Дуга полёта.
-                 *
-                 * 0.08 — специально уменьшено,
-                 * чтобы мяч не перелетал над воротами.
-                 */
                 const arc =
                     -Math.sin(progress * Math.PI) *
                     pitchHeight *
@@ -120,44 +96,54 @@ document.addEventListener("DOMContentLoaded", () => {
                     (endY - startY) * eased +
                     arc;
 
-                /*
-                 * Мяч постепенно уменьшается вдали
-                 */
-                const scale = 1 - progress * 0.4;
+                const scale =
+                    1 - progress * 0.4;
 
-                /*
-                 * Вращение мяча
-                 */
-                const rotation = progress * 1200;
+                const rotation =
+                    progress * 1200;
 
-                matchBall.style.left = `${x}px`;
-                matchBall.style.top = `${y}px`;
+                matchBall.style.left =
+                    `${x}px`;
+
+                matchBall.style.top =
+                    `${y}px`;
 
                 matchBall.style.transform =
                     `translate(0, 0) scale(${scale}) rotate(${rotation}deg)`;
 
                 if (progress < 1) {
-                    requestAnimationFrame(animateBall);
+
+                    requestAnimationFrame(
+                        animateBall
+                    );
+
                 } else {
 
-                    /*
-                     * Когда мяч попал в угол —
-                     * запускаем остальные анимации
-                     */
-                    goalSection.classList.add("goal-scored");
+                    goalSection.classList.add(
+                        "goal-scored"
+                    );
 
-                    /*
-                     * Через несколько секунд
-                     * возвращаем всё в исходное состояние
-                     */
+                    const score =
+                        document.querySelector("#score");
+
+                    if (score) {
+                        score.textContent = "1 — 0";
+                    }
+
                     setTimeout(() => {
 
-                        goalSection.classList.remove("goal-scored");
+                        goalSection.classList.remove(
+                            "goal-scored"
+                        );
 
-                        matchBall.style.animation = "none";
+                        matchBall.style.animation =
+                            "none";
 
-                        matchBall.style.left = `${startX}px`;
-                        matchBall.style.top = `${startY}px`;
+                        matchBall.style.left =
+                            `${startX}px`;
+
+                        matchBall.style.top =
+                            `${startY}px`;
 
                         matchBall.style.transform =
                             "translate(0, 0) scale(1) rotate(0deg)";
@@ -166,11 +152,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            requestAnimationFrame(animateBall);
+            requestAnimationFrame(
+                animateBall
+            );
         }
 
-
-        goalButton.addEventListener("click", shootBall);
+        goalButton.addEventListener(
+            "click",
+            shootBall
+        );
     }
 
 
@@ -178,7 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
        3. КАРТОЧКИ ИГРОКОВ
        ===================================================== */
 
-    const playerCards = document.querySelectorAll(".player-card");
+    const playerCards =
+        document.querySelectorAll(".player-card");
 
     playerCards.forEach((card) => {
 
@@ -195,11 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
        4. ТАКТИКА
        ===================================================== */
 
-    const tacticSteps = document.querySelectorAll(".tactic-step");
+    const tacticSteps =
+        document.querySelectorAll(".tactic-step");
 
     tacticSteps.forEach((step, index) => {
 
-        step.style.transitionDelay = `${index * 0.12}s`;
+        step.style.transitionDelay =
+            `${index * 0.12}s`;
 
     });
 
@@ -208,20 +201,34 @@ document.addEventListener("DOMContentLoaded", () => {
        5. СЛУЧАЙНОЕ СОБЫТИЕ
        ===================================================== */
 
-    const randomButton = document.querySelector("#randomEventButton");
-    const randomEventText = document.querySelector("#randomEvent");
+    const randomButton =
+        document.querySelector("#randomButton");
+
+    const randomEventText =
+        document.querySelector("#randomEvent");
 
     const events = [
+
         "⚽ Екон забивает с дальней дистанции!",
+
         "🔥 Галым разгоняет атаку!",
+
         "🧤 Шамиль снова спасает ворота!",
+
         "💨 Азик убежал по флангу!",
+
         "🎯 Идеальная передача на Екона!",
+
         "😂 Галым опять спорит с судьёй!",
+
         "🥶 Шамиль вытащил невозможный удар!",
+
         "🚀 Екон пробил — перекладина!",
+
         "🔥 БРАТВА ВЫХОДИТ НА ПОЛЕ!",
+
         "⚡ Молниеносная контратака!"
+
     ];
 
     if (randomButton && randomEventText) {
@@ -229,16 +236,22 @@ document.addEventListener("DOMContentLoaded", () => {
         randomButton.addEventListener("click", () => {
 
             const randomIndex =
-                Math.floor(Math.random() * events.length);
+                Math.floor(
+                    Math.random() * events.length
+                );
 
             randomEventText.textContent =
                 events[randomIndex];
 
-            randomEventText.classList.remove("event-pop");
+            randomEventText.classList.remove(
+                "event-pop"
+            );
 
             void randomEventText.offsetWidth;
 
-            randomEventText.classList.add("event-pop");
+            randomEventText.classList.add(
+                "event-pop"
+            );
 
         });
 
@@ -249,17 +262,20 @@ document.addEventListener("DOMContentLoaded", () => {
        6. RIPPLE-ЭФФЕКТ КНОПОК
        ===================================================== */
 
-    const buttons = document.querySelectorAll("button");
+    const buttons =
+        document.querySelectorAll("button");
 
     buttons.forEach((button) => {
 
         button.addEventListener("click", function (event) {
 
-            const ripple = document.createElement("span");
+            const ripple =
+                document.createElement("span");
 
             ripple.classList.add("ripple");
 
-            const rect = this.getBoundingClientRect();
+            const rect =
+                this.getBoundingClientRect();
 
             ripple.style.left =
                 `${event.clientX - rect.left}px`;
@@ -282,19 +298,25 @@ document.addEventListener("DOMContentLoaded", () => {
        7. ПЛАВНАЯ ПРОКРУТКА
        ===================================================== */
 
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    document.querySelectorAll(
+        'a[href^="#"]'
+    ).forEach((link) => {
 
         link.addEventListener("click", (event) => {
 
             const targetId =
                 link.getAttribute("href");
 
-            if (!targetId || targetId === "#") return;
+            if (!targetId || targetId === "#") {
+                return;
+            }
 
             const target =
                 document.querySelector(targetId);
 
-            if (!target) return;
+            if (!target) {
+                return;
+            }
 
             event.preventDefault();
 
@@ -321,9 +343,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 entries.forEach((entry) => {
 
-                    if (!entry.isIntersecting) return;
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-                    const element = entry.target;
+                    const element =
+                        entry.target;
 
                     const target =
                         parseInt(
@@ -333,7 +358,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             10
                         );
 
-                    if (isNaN(target)) return;
+                    if (isNaN(target)) {
+                        return;
+                    }
 
                     let current = 0;
 
@@ -346,14 +373,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         const progress =
                             Math.min(
-                                (time - start) / duration,
+                                (time - start) /
+                                duration,
                                 1
                             );
 
                         current =
                             Math.floor(
                                 target *
-                                (1 -
+                                (
+                                    1 -
                                     Math.pow(
                                         1 - progress,
                                         3
@@ -365,9 +394,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             current;
 
                         if (progress < 1) {
+
                             requestAnimationFrame(
                                 countAnimation
                             );
+
                         }
 
                     }
@@ -377,6 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
                     observer.unobserve(element);
+
                 });
 
             },
@@ -394,6 +426,8 @@ document.addEventListener("DOMContentLoaded", () => {
        9. ЗАГРУЗКА САЙТА
        ===================================================== */
 
-    document.body.classList.add("page-loaded");
+    document.body.classList.add(
+        "page-loaded"
+    );
 
 });
