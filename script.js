@@ -247,23 +247,80 @@ if (
         /*
          * Перемещаем мяч к игроку
          */
-        function moveBallTo(player, duration = 650) {
+       
+function moveBallTo(player, duration = 650) {
 
-            const position =
-                getPlayerPosition(player);
+    const boardRect =
+        tacticsBoard.getBoundingClientRect();
 
-            tacticBall.style.transition =
-                `left ${duration}ms cubic-bezier(0.4, 0, 0.2, 1),
-                 top ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+    const ballRect =
+        tacticBall.getBoundingClientRect();
 
-            tacticBall.style.left =
-                `${position.x}px`;
+    const playerRect =
+        player.getBoundingClientRect();
 
-            tacticBall.style.top =
-                `${position.y}px`;
-        }
+    const startX =
+        ballRect.left +
+        ballRect.width / 2 -
+        boardRect.left;
 
+    const startY =
+        ballRect.top +
+        ballRect.height / 2 -
+        boardRect.top;
 
+    const endX =
+        playerRect.left +
+        playerRect.width / 2 -
+        boardRect.left;
+
+    const endY =
+        playerRect.top +
+        playerRect.height / 2 -
+        boardRect.top;
+
+    const line =
+        document.createElement("div");
+
+    line.classList.add("tactic-pass-line");
+
+    const dx = endX - startX;
+    const dy = endY - startY;
+
+    const distance =
+        Math.sqrt(dx * dx + dy * dy);
+
+    const angle =
+        Math.atan2(dy, dx) * 180 / Math.PI;
+
+    line.style.left =
+        `${startX}px`;
+
+    line.style.top =
+        `${startY}px`;
+
+    line.style.width =
+        `${distance}px`;
+
+    line.style.transform =
+        `rotate(${angle}deg)`;
+
+    tacticsBoard.appendChild(line);
+
+    tacticBall.style.transition =
+        `left ${duration}ms cubic-bezier(0.4, 0, 0.2, 1),
+         top ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+
+    tacticBall.style.left =
+        `${endX}px`;
+
+    tacticBall.style.top =
+        `${endY}px`;
+
+    setTimeout(() => {
+        line.remove();
+    }, duration);
+}
         /*
          * Последовательность пасов
          */
