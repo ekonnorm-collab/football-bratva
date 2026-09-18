@@ -549,3 +549,15 @@ if (
     );
 
 });
+console.log("ТАКТИКА TEST");
+
+const testButton = document.querySelector("#tacticButton");
+
+console.log("КНОПКА:", testButton);
+
+if (testButton) {
+    testButton.addEventListener("click", () => {
+        console.log("КНОПКА ТАКТИКИ НАЖАТА");
+        alert("ТАКТИКА РАБОТАЕТ");
+    });
+}
