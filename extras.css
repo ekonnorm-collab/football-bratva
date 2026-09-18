@@ -751,65 +751,33 @@ a:focus-visible {
    ЛИНИЯ ПАСА
    ===================================================== */
 
-.tactic-pass-line {
-    position: absolute;
-
-    height: 3px;
-
-    background: rgba(255, 255, 255, 0.9);
-
-    transform-origin: left center;
-
-    z-index: 15;
-
-    pointer-events: none;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 0 8px rgba(255, 255, 255, 0.7),
-        0 0 18px rgba(255, 255, 255, 0.35);
-
-    animation: passLineAppear 0.65s ease-out forwards;
-}
-
-@keyframes passLineAppear {
-
-    0% {
-        opacity: 0;
-        transform: scaleX(0);
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.15;
-        transform: scaleX(1);
-    }
-}
 /* =====================================================
-   ЛИНИИ ПАСОВ В ТАКТИКЕ
+   ЛИНИЯ ПАСА — ТАКТИКА
    ===================================================== */
 
 .tactic-pass-line {
-    position: absolute;
-    height: 4px;
-    background: white;
-    transform-origin: left center;
-    z-index: 15;
-    pointer-events: none;
-    border-radius: 10px;
+    position: absolute !important;
+
+    height: 4px !important;
+    background: #ffffff !important;
+
+    transform-origin: left center !important;
+
+    border-radius: 999px !important;
+
+    z-index: 999 !important;
+    pointer-events: none !important;
+
+    opacity: 0.9;
 
     box-shadow:
-        0 0 8px rgba(255, 255, 255, 0.9),
-        0 0 18px rgba(255, 255, 255, 0.6);
+        0 0 6px rgba(255, 255, 255, 0.9),
+        0 0 14px rgba(255, 255, 255, 0.6);
 
-    animation: tacticPassLine 0.8s ease-out forwards;
+    animation: tacticPassLineFade 0.8s ease-out forwards;
 }
 
-@keyframes tacticPassLine {
+@keyframes tacticPassLineFade {
 
     0% {
         opacity: 0;
@@ -819,7 +787,11 @@ a:focus-visible {
         opacity: 1;
     }
 
+    70% {
+        opacity: 0.9;
+    }
+
     100% {
-        opacity: 0.25;
+        opacity: 0.35;
     }
 }
