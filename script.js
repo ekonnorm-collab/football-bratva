@@ -208,61 +208,130 @@ if (
 
     tacticButton.addEventListener("click", () => {
 
-        /* Защита от повторного запуска */
         if (tacticsBoard.classList.contains("playing")) {
             return;
         }
 
         tacticsBoard.classList.add("playing");
 
-        /* Начальная позиция */
-        tacticBall.style.transition = "none";
-
-        tacticBall.style.left = "18%";
-        tacticBall.style.top = "72%";
-
-        /* Сбрасываем активных игроков */
         tacticPlayers.forEach((player) => {
             player.classList.remove("active");
         });
 
-        if (tacticMessage) {
-            tacticMessage.textContent = "ШАМИЛЬ → АЗИК";
+        /*
+         * Получаем координаты центра игрока
+         * относительно тактической доски
+         */
+        function getPlayerPosition(player) {
+
+            const boardRect =
+                tacticsBoard.getBoundingClientRect();
+
+            const playerRect =
+                player.getBoundingClientRect();
+
+            return {
+                x:
+                    playerRect.left +
+                    playerRect.width / 2 -
+                    boardRect.left,
+
+                y:
+                    playerRect.top +
+                    playerRect.height / 2 -
+                    boardRect.top
+            };
         }
 
-        /* Координаты пасов */
+
+        /*
+         * Перемещаем мяч к игроку
+         */
+        function moveBallTo(player, duration = 650) {
+
+            const position =
+                getPlayerPosition(player);
+
+            tacticBall.style.transition =
+                `left ${duration}ms cubic-bezier(0.4, 0, 0.2, 1),
+                 top ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+
+            tacticBall.style.left =
+                `${position.x}px`;
+
+            tacticBall.style.top =
+                `${position.y}px`;
+        }
+
+
+        /*
+         * Последовательность пасов
+         */
         const passes = [
             {
-                player: ".tactic-shamil",
-                x: "38%",
-                y: "58%",
+                selector: ".tactic-shamil",
                 text: "ШАМИЛЬ → АЗИК"
             },
             {
-                player: ".tactic-azamat",
-                x: "58%",
-                y: "42%",
+                selector: ".tactic-azamat",
                 text: "АЗИК → ГАЛЫМ"
             },
             {
-                player: ".tactic-galym",
-                x: "78%",
-                y: "30%",
+                selector: ".tactic-galym",
                 text: "ГАЛЫМ → ЕКОН"
             },
             {
-                player: ".tactic-ekon",
-                x: "88%",
-                y: "22%",
+                selector: ".tactic-ekon",
                 text: "ЕКОН ⚽ ГООООЛ!"
             }
         ];
 
+
+        /*
+         * Ставим мяч к первому игроку
+         */
+        const firstPlayer =
+            tacticsBoard.querySelector(
+                passes[0].selector
+            );
+
+        if (!firstPlayer) {
+            tacticsBoard.classList.remove("playing");
+            return;
+        }
+
+        const firstPosition =
+            getPlayerPosition(firstPlayer);
+
+        tacticBall.style.transition = "none";
+
+        tacticBall.style.left =
+            `${firstPosition.x}px`;
+
+        tacticBall.style.top =
+            `${firstPosition.y}px`;
+
+
         let index = 0;
+
 
         function nextPass() {
 
             if (index >= passes.length) {
+
+                if (tacticMessage) {
+                    tacticMessage.textContent =
+                        "АТАКА ЗАВЕРШЕНА 🔥";
+                }
+
+                const ekon =
+                    tacticsBoard.querySelector(
+                        ".tactic-ekon"
+                    );
+
+                if (ekon) {
+                    ekon.classList.add("active");
+                }
 
                 setTimeout(() => {
 
@@ -274,42 +343,67 @@ if (
                         player.classList.remove("active");
                     });
 
-                }, 1200);
+                }, 1500);
 
                 return;
             }
 
-            const pass = passes[index];
+
+            const pass =
+                passes[index];
 
             const player =
-                tacticsBoard.querySelector(pass.player);
+                tacticsBoard.querySelector(
+                    pass.selector
+                );
 
-            if (player) {
 
-                tacticPlayers.forEach((item) => {
-                    item.classList.remove("active");
-                });
-
-                player.classList.add("active");
+            if (!player) {
+                index++;
+                nextPass();
+                return;
             }
 
+
+            /*
+             * Подсвечиваем игрока
+             */
+            tacticPlayers.forEach((item) => {
+                item.classList.remove("active");
+            });
+
+            player.classList.add("active");
+
+
+            /*
+             * Меняем текст
+             */
             if (tacticMessage) {
                 tacticMessage.textContent =
                     pass.text;
             }
 
-            tacticBall.style.transition =
-                "left 0.65s cubic-bezier(0.4, 0, 0.2, 1), top 0.65s cubic-bezier(0.4, 0, 0.2, 1)";
 
-            tacticBall.style.left = pass.x;
-            tacticBall.style.top = pass.y;
+            /*
+             * Полёт мяча
+             */
+            moveBallTo(player, 650);
+
 
             index++;
 
-            setTimeout(nextPass, 700);
+            setTimeout(() => {
+                nextPass();
+            }, 800);
         }
 
-        nextPass();
+
+        /*
+         * Начинаем
+         */
+        setTimeout(() => {
+            nextPass();
+        }, 300);
     });
 }
   
@@ -549,15 +643,3 @@ if (
     );
 
 });
-console.log("ТАКТИКА TEST");
-
-const testButton = document.querySelector("#tacticButton");
-
-console.log("КНОПКА:", testButton);
-
-if (testButton) {
-    testButton.addEventListener("click", () => {
-        console.log("КНОПКА ТАКТИКИ НАЖАТА");
-        alert("ТАКТИКА РАБОТАЕТ");
-    });
-}
