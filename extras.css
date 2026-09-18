@@ -2,9 +2,6 @@
    ФК БРАТВА — EXTRA EFFECTS
    ========================================================= */
 
-
-/* ================= SCROLL REVEAL ================= */
-
 .team-section,
 .goal-section,
 .tactics-section,
@@ -15,9 +12,7 @@
 .event-section {
     opacity: 0;
     transform: translateY(45px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .section-visible {
@@ -26,7 +21,7 @@
 }
 
 
-/* ================= HERO ANIMATIONS ================= */
+/* ================= HERO ================= */
 
 .hero-content {
     animation: heroContentIn 1s ease forwards;
@@ -67,8 +62,7 @@
 }
 
 @keyframes heroBallFloat {
-    0%,
-    100% {
+    0%, 100% {
         margin-top: 0;
     }
 
@@ -180,8 +174,7 @@
 }
 
 @keyframes netShake {
-    0%,
-    100% {
+    0%, 100% {
         transform: scale(1);
     }
 
@@ -203,7 +196,7 @@
 }
 
 
-/* ================= GOAL ANIMATION ================= */
+/* ================= GOAL ================= */
 
 .goal-section.goal-scored .match-ball {
     animation: shotToTopCorner 1.25s cubic-bezier(0.35, 0.05, 0.2, 1) forwards;
@@ -452,26 +445,50 @@
 
 
 /* =========================================================
-   GALLERY MEDIA
+   GALLERY — FIX
    ========================================================= */
+
+.gallery {
+    width: 100%;
+}
 
 .gallery-card {
     position: relative;
     overflow: hidden;
+
+    /* ВАЖНО */
+    min-height: 420px;
+
+    border-radius: 20px;
 }
 
-/* Фото и видео полностью заполняют карточку */
+/* Главная большая карточка */
+.gallery-main {
+    min-height: 500px;
+}
+
+/* Фото-карточки */
+.gallery-second,
+.gallery-third {
+    min-height: 350px;
+}
+
+/* Медиа */
 .gallery-media {
     position: absolute;
-    inset: 0;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
-    object-position: center;
-
     display: block;
+
+    object-fit: cover;
+    object-position: center center;
 
     z-index: 1;
 
@@ -480,10 +497,14 @@
         filter 0.6s ease;
 }
 
-/* Затемнение поверх медиа */
+/* Затемнение */
 .gallery-overlay {
     position: absolute;
-    inset: 0;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     z-index: 2;
 
@@ -498,9 +519,9 @@
 
     background: linear-gradient(
         to top,
-        rgba(0, 0, 0, 0.78),
-        rgba(0, 0, 0, 0.18) 55%,
-        transparent 80%
+        rgba(0, 0, 0, 0.82),
+        rgba(0, 0, 0, 0.2) 55%,
+        transparent 85%
     );
 
     pointer-events: none;
@@ -522,24 +543,13 @@
     letter-spacing: 0.5px;
 }
 
-/* Эффект при наведении */
+/* Наведение */
 .gallery-card:hover .gallery-media {
     transform: scale(1.06);
     filter: brightness(1.08);
 }
 
-.gallery-card:hover .gallery-overlay {
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.85),
-        rgba(0, 0, 0, 0.2) 60%,
-        transparent 85%
-    );
-}
-
-
-/* ================= GALLERY INDIVIDUAL POSITION ================= */
-
+/* Позиция фотографий */
 .gallery-main .gallery-media {
     object-position: center center;
 }
@@ -553,7 +563,9 @@
 }
 
 
-/* ================= HISTORY ================= */
+/* =========================================================
+   HISTORY
+   ========================================================= */
 
 .history-section {
     position: relative;
@@ -581,7 +593,9 @@
 }
 
 
-/* ================= RANDOM EVENT ================= */
+/* =========================================================
+   RANDOM EVENT
+   ========================================================= */
 
 .event-section {
     position: relative;
@@ -608,8 +622,7 @@
 }
 
 @keyframes randomBallFloat {
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(-50%) rotate(0deg);
     }
 
@@ -630,7 +643,9 @@
 }
 
 
-/* ================= BUTTON RIPPLE ================= */
+/* =========================================================
+   BUTTON RIPPLE
+   ========================================================= */
 
 .main-button {
     position: relative;
@@ -659,7 +674,9 @@
 }
 
 
-/* ================= FOOTER ================= */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .footer-logo {
     transition:
@@ -673,7 +690,9 @@
 }
 
 
-/* ================= FOCUS ================= */
+/* =========================================================
+   FOCUS
+   ========================================================= */
 
 button:focus-visible,
 a:focus-visible {
@@ -687,6 +706,19 @@ a:focus-visible {
    ========================================================= */
 
 @media (max-width: 700px) {
+
+    .gallery-card {
+        min-height: 300px;
+    }
+
+    .gallery-main {
+        min-height: 360px;
+    }
+
+    .gallery-second,
+    .gallery-third {
+        min-height: 280px;
+    }
 
     .gallery-overlay {
         padding: 20px;
@@ -711,9 +743,24 @@ a:focus-visible {
 }
 
 
-/* ================= SMALL MOBILE ================= */
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 420px) {
+
+    .gallery-card {
+        min-height: 260px;
+    }
+
+    .gallery-main {
+        min-height: 320px;
+    }
+
+    .gallery-second,
+    .gallery-third {
+        min-height: 240px;
+    }
 
     .gallery-overlay {
         padding: 16px;
@@ -726,7 +773,6 @@ a:focus-visible {
     .gallery-overlay span {
         margin-bottom: 3px;
     }
-
 }
 
 
@@ -744,5 +790,4 @@ a:focus-visible {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-
 }
