@@ -806,46 +806,56 @@ h2 {
 
 
 /* GOAL ANIMATION */
-
 .goal-section.goal-scored .match-ball {
-    animation: shotToTopCorner 1.25s cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
-}
-
-.goal-section.goal-scored .goalkeeper {
-    animation: goalkeeperReact 1.25s ease forwards;
-}
-
-.goal-section.goal-scored .striker {
-    animation: strikerCelebrate 1.3s ease forwards;
-}
-
-.goal-section.goal-scored .goal-message {
-    animation: goalPop 1.2s 0.95s ease forwards;
-}
-
-.goal-section.goal-scored .celebration-message {
-    animation: celebrationPop 1.2s 1.35s ease forwards;
+    animation: shotToTopCorner 1.4s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+    will-change: left, top, transform;
 }
 
 @keyframes shotToTopCorner {
+
     0% {
         left: calc(24% + 70px);
         top: calc(50% - 20px);
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
     }
 
-    65% {
-        left: 70%;
-        top: 31%;
-        transform: scale(0.9) rotate(500deg);
+    15% {
+        left: 35%;
+        top: 47%;
+        transform: scale(1.05) rotate(180deg);
+    }
+
+    30% {
+        left: 48%;
+        top: 42%;
+        transform: scale(1) rotate(360deg);
+    }
+
+    50% {
+        left: 63%;
+        top: 34%;
+        transform: scale(0.9) rotate(600deg);
+    }
+
+    70% {
+        left: 76%;
+        top: 27%;
+        transform: scale(0.8) rotate(800deg);
+    }
+
+    85% {
+        left: 86%;
+        top: 21%;
+        transform: scale(0.7) rotate(1000deg);
     }
 
     100% {
-        left: 92%;
-        top: 27%;
-        transform: scale(0.72) rotate(800deg);
+        left: 91%;
+        top: 18%;
+        transform: scale(0.6) rotate(1200deg);
     }
 }
+
 
 @keyframes goalkeeperReact {
     0%,
