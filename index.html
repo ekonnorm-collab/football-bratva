@@ -1,15 +1,20 @@
-<!doctype html>
+```html
+<!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ФК Братва — сезон 2026</title>
+    <title>ФК Братва — Сезон 2026</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Russo+One&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Russo+One&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="extras.css">
@@ -17,47 +22,58 @@
 
 <body>
 
-<main>
+    <!-- ================= HERO ================= -->
 
-    <!-- HERO -->
-    <section class="hero">
+    <header class="hero">
 
-        <div class="hero__nav">
-            <span class="badge">ФК БРАТВА</span>
-            <span>СЕЗОН 2026</span>
-        </div>
+        <nav class="hero-nav">
+            <div class="logo">ФК БРАТВА</div>
 
-        <div class="hero__copy">
-            <p class="eyebrow">ПОЛЕ • МЯЧ • ЧЕТЫРЕ ЛЕГЕНДЫ</p>
+            <div class="season">
+                СЕЗОН <strong>2026</strong>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+
+            <div class="hero-kicker">
+                ПОЛЕ • МЯЧ • ЧЕТЫРЕ ЛЕГЕНДЫ
+            </div>
 
             <h1>
                 СОСТАВ,<br>
-                <em>КОТОРЫЙ</em><br>
+                <span>КОТОРЫЙ</span><br>
                 НЕ ЗАБУДЕШЬ
             </h1>
 
             <p>
-                Четыре друга. Один мяч. И слишком много историй,
-                которые нельзя забыть после матча.
+                Четыре друга. Один мяч.
+                И слишком много историй,
+                которые нельзя забыть.
             </p>
 
-            <a class="button" href="#team">
-                СМОТРЕТЬ КОМАНДУ <span>↓</span>
+            <a href="#team" class="main-button">
+                СМОТРЕТЬ КОМАНДУ
+                <span>↓</span>
             </a>
+
         </div>
 
-        <div class="ball">⚽</div>
+        <div class="hero-ball">⚽</div>
 
-    </section>
+        <div class="hero-number">07</div>
+
+    </header>
 
 
-    <!-- TEAM -->
-    <section id="team" class="team">
+    <!-- ================= TEAM ================= -->
 
-        <header class="section-head">
+    <section class="team-section" id="team">
+
+        <div class="section-heading">
 
             <div>
-                <p class="eyebrow">СТАРТОВЫЙ СОСТАВ</p>
+                <div class="eyebrow">СТАРТОВЫЙ СОСТАВ</div>
 
                 <h2>
                     НАШИ<br>
@@ -65,49 +81,57 @@
                 </h2>
             </div>
 
-            <p class="team-description">
-                Каждый со своей ролью.<br>
+            <p>
+                У каждого своя роль.<br>
                 Вместе — одна команда.
             </p>
 
-        </header>
+        </div>
 
 
-        <div class="cards">
+        <div class="players-grid">
 
-            <!-- EKON -->
-            <article class="card card--ekon player-card" data-player="ekon">
 
-                <div class="photo">
+            <!-- ЕКОН -->
+
+            <article class="player-card player-ekon" data-player="ekon">
+
+                <div class="player-image">
+
                     <img
                         src="https://commons.wikimedia.org/wiki/Special:FilePath/Cristiano_Ronaldo_2018.jpg?width=900"
                         alt="Екон"
                     >
+
+                    <div class="player-number">07</div>
+
                 </div>
 
-                <div class="card__number">07</div>
+                <div class="player-info">
 
-                <div class="card__body">
-
-                    <p class="role">ГЛАВНЫЙ БОМБАРДИР</p>
+                    <div class="player-role">
+                        ГЛАВНЫЙ БОМБАРДИР
+                    </div>
 
                     <h3>ЕКОН</h3>
 
                     <p>
-                        Пока вратарь думает, куда летит мяч,
-                        Екон уже празднует гол.
+                        Видит ворота даже тогда,
+                        когда остальные видят только защитников.
                     </p>
 
-                    <div class="stats">
-                        <span>
-                            ГОЛЫ
-                            <b>100</b>
-                        </span>
+                    <div class="player-stats">
 
-                        <span>
-                            ИНСТИНКТ
-                            <b>99</b>
-                        </span>
+                        <div>
+                            <small>ГОЛЫ</small>
+                            <strong>100</strong>
+                        </div>
+
+                        <div>
+                            <small>ИНСТИНКТ</small>
+                            <strong>99</strong>
+                        </div>
+
                     </div>
 
                 </div>
@@ -115,39 +139,46 @@
             </article>
 
 
-            <!-- AZAMAT -->
-            <article class="card card--azamat player-card" data-player="azamat">
+            <!-- АЗАМАТ -->
 
-                <div class="photo">
+            <article class="player-card player-azamat" data-player="azamat">
+
+                <div class="player-image">
+
                     <img
                         src="assets/aza.jpg"
                         alt="Азамат"
                     >
+
+                    <div class="player-number">04</div>
+
                 </div>
 
-                <div class="card__number">04</div>
+                <div class="player-info">
 
-                <div class="card__body">
+                    <div class="player-role">
+                        ЦЕНТРАЛЬНЫЙ ЗАЩИТНИК
+                    </div>
 
-                    <p class="role">ЦЕНТРАЛЬНЫЙ ЗАЩИТНИК</p>
-
-                    <h3>АЗАМАТ</h3>
+                    <h3>АЗИК</h3>
 
                     <p>
-                        Стена команды. Отбор, борьба и пас
-                        вперёд без лишних разговоров.
+                        Если мяч прошёл через Азика,
+                        значит это был очень хороший мяч.
                     </p>
 
-                    <div class="stats">
-                        <span>
-                            ОТБОР
-                            <b>96</b>
-                        </span>
+                    <div class="player-stats">
 
-                        <span>
-                            СТЕНА
-                            <b>100</b>
-                        </span>
+                        <div>
+                            <small>ОТБОР</small>
+                            <strong>96</strong>
+                        </div>
+
+                        <div>
+                            <small>СТЕНА</small>
+                            <strong>100</strong>
+                        </div>
+
                     </div>
 
                 </div>
@@ -155,39 +186,46 @@
             </article>
 
 
-            <!-- GALYM -->
-            <article class="card card--galym player-card" data-player="galym">
+            <!-- ГАЛЫМ -->
 
-                <div class="photo">
+            <article class="player-card player-galym" data-player="galym">
+
+                <div class="player-image">
+
                     <img
                         src="assets/galym.jpg"
                         alt="Галым"
                     >
+
+                    <div class="player-number">08</div>
+
                 </div>
 
-                <div class="card__number">08</div>
+                <div class="player-info">
 
-                <div class="card__body">
-
-                    <p class="role">СВОБОДНЫЙ ХУДОЖНИК</p>
+                    <div class="player-role">
+                        СВОБОДНЫЙ ХУДОЖНИК
+                    </div>
 
                     <h3>ГАЛЫМ</h3>
 
                     <p>
-                        Может сделать финт там, где обычный человек
-                        просто пошёл бы прямо.
+                        Финт там, где его никто не ожидал.
+                        Пас туда, куда никто не смотрел.
                     </p>
 
-                    <div class="stats">
-                        <span>
-                            ФИНТЫ
-                            <b>37</b>
-                        </span>
+                    <div class="player-stats">
 
-                        <span>
-                            ХАРИЗМА
-                            <b>99</b>
-                        </span>
+                        <div>
+                            <small>ФИНТЫ</small>
+                            <strong>37</strong>
+                        </div>
+
+                        <div>
+                            <small>ХАРИЗМА</small>
+                            <strong>99</strong>
+                        </div>
+
                     </div>
 
                 </div>
@@ -195,39 +233,46 @@
             </article>
 
 
-            <!-- SHAMIL -->
-            <article class="card card--shamil player-card" data-player="shamil">
+            <!-- ШАМИЛЬ -->
 
-                <div class="photo">
+            <article class="player-card player-shamil" data-player="shamil">
+
+                <div class="player-image">
+
                     <img
                         src="assets/shamil.jpg"
                         alt="Шамиль"
                     >
+
+                    <div class="player-number">10</div>
+
                 </div>
 
-                <div class="card__number">10</div>
+                <div class="player-info">
 
-                <div class="card__body">
-
-                    <p class="role">ФЛАНГОВЫЙ МАЭСТРО</p>
+                    <div class="player-role">
+                        ВРАТАРЬ / ФЛАНГОВЫЙ МАЭСТРО
+                    </div>
 
                     <h3>ШАМИЛЬ</h3>
 
                     <p>
-                        Скорость, навесы и способность появиться
-                        там, где его никто не ждал.
+                        Сегодня в воротах.
+                        Завтра — кто знает.
                     </p>
 
-                    <div class="stats">
-                        <span>
-                            СКОРОСТЬ
-                            <b>94</b>
-                        </span>
+                    <div class="player-stats">
 
-                        <span>
-                            НАВЕСЫ
-                            <b>91</b>
-                        </span>
+                        <div>
+                            <small>РЕАКЦИЯ</small>
+                            <strong>94</strong>
+                        </div>
+
+                        <div>
+                            <small>НАВЕСЫ</small>
+                            <strong>91</strong>
+                        </div>
+
                     </div>
 
                 </div>
@@ -239,21 +284,22 @@
     </section>
 
 
-    <!-- MATCH SIMULATOR -->
-    <section class="match-section">
+    <!-- ================= LIVE GOAL ================= -->
 
-        <div class="section-head match-head">
+    <section class="goal-section" id="goal">
+
+        <div class="section-heading dark-heading">
 
             <div>
-                <p class="eyebrow">LIVE MATCH</p>
+                <div class="eyebrow">LIVE MATCH</div>
 
                 <h2>
-                    МАТЧ<br>
-                    БРАТВЫ
+                    ЕКОН<br>
+                    БЬЁТ
                 </h2>
             </div>
 
-            <button class="button" id="goalButton">
+            <button class="main-button" id="goalButton">
                 ПОКАЗАТЬ ГОЛ ⚽
             </button>
 
@@ -263,46 +309,90 @@
         <div class="stadium">
 
             <div class="scoreboard">
+
                 <span>ФК БРАТВА</span>
-                <strong id="score">0 — 0</strong>
+
+                <strong id="score">
+                    0 — 0
+                </strong>
+
                 <span>СОПЕРНИК</span>
+
             </div>
 
 
-            <div class="pitch">
+            <div class="football-pitch">
 
-                <div class="goal goal--left">
-                    <span></span>
+                <div class="pitch-half"></div>
+
+                <div class="pitch-center-line"></div>
+
+                <div class="pitch-center-circle"></div>
+
+                <div class="pitch-center-dot"></div>
+
+
+                <!-- Ворота Шамиля -->
+
+                <div class="goal-frame goal-frame-right">
+
+                    <div class="goal-net"></div>
+
                 </div>
 
-                <div class="goal goal--right">
-                    <span></span>
+
+                <!-- Шамиль -->
+
+                <div
+                    class="match-player goalkeeper"
+                    id="matchShamil"
+                >
+
+                    <span>Ш</span>
+
+                    <small>ШАМИЛЬ</small>
+
                 </div>
 
 
-                <div class="center-line"></div>
+                <!-- Екон -->
 
-                <div class="center-circle"></div>
+                <div
+                    class="match-player striker"
+                    id="matchEkon"
+                >
 
+                    <span>Е</span>
 
-                <div class="player player--shamil" id="matchShamil">
-                    Ш
+                    <small>ЕКОН</small>
+
                 </div>
 
-                <div class="player player--ekon" id="matchEkon">
-                    Е
-                </div>
 
-                <div class="match-ball" id="matchBall">
+                <!-- Мяч -->
+
+                <div
+                    class="match-ball"
+                    id="matchBall"
+                >
                     ⚽
                 </div>
 
 
-                <div class="goal-text" id="goalText">
+                <!-- Текст -->
+
+                <div
+                    class="goal-message"
+                    id="goalText"
+                >
                     ГООООООООЛ!
                 </div>
 
-                <div class="celebration" id="celebration">
+
+                <div
+                    class="celebration-message"
+                    id="celebration"
+                >
                     ЕКОН 🔥
                 </div>
 
@@ -313,61 +403,130 @@
     </section>
 
 
-    <!-- TACTICS -->
+    <!-- ================= TACTICS ================= -->
+
     <section class="tactics-section">
 
-        <header class="section-head">
+        <div class="section-heading">
 
             <div>
-                <p class="eyebrow">ТАКТИКА 4–1</p>
+
+                <div class="eyebrow">
+                    ТАКТИКА БРАТВЫ
+                </div>
 
                 <h2>
-                    КАК МЫ<br>
-                    ЗАБИВАЕМ
+                    ПАС.<br>
+                    ПАС.<br>
+                    ГОООЛ.
                 </h2>
+
             </div>
 
-            <button class="button" id="tacticButton">
+            <button
+                class="main-button"
+                id="tacticButton"
+            >
                 ЗАПУСТИТЬ ТАКТИКУ ▶
             </button>
 
-        </header>
+        </div>
 
 
-        <div class="tactics-board">
+        <div
+            class="tactics-board"
+            id="tacticsBoard"
+        >
 
-            <div class="tactic-player tactic-shamil">
-                <span>Ш</span>
-                <b>ШАМИЛЬ</b>
-            </div>
+            <div class="tactic-lines">
 
-            <div class="tactic-player tactic-azamat">
-                <span>А</span>
-                <b>АЗИК</b>
-            </div>
+                <div class="tactic-line line-shamil"></div>
+                <div class="tactic-line line-azamat"></div>
+                <div class="tactic-line line-galym"></div>
 
-            <div class="tactic-player tactic-galym">
-                <span>Г</span>
-                <b>ГАЛЫМ</b>
-            </div>
-
-            <div class="tactic-player tactic-ekon">
-                <span>Е</span>
-                <b>ЕКОН</b>
             </div>
 
 
-            <div class="tactic-ball" id="tacticBall">
+            <!-- ШАМИЛЬ -->
+
+            <div
+                class="tactic-player tactic-shamil"
+                data-player="shamil"
+            >
+
+                <div class="tactic-circle">
+                    Ш
+                </div>
+
+                <span>ШАМИЛЬ</span>
+
+            </div>
+
+
+            <!-- АЗИК -->
+
+            <div
+                class="tactic-player tactic-azamat"
+                data-player="azamat"
+            >
+
+                <div class="tactic-circle">
+                    А
+                </div>
+
+                <span>АЗИК</span>
+
+            </div>
+
+
+            <!-- ГАЛЫМ -->
+
+            <div
+                class="tactic-player tactic-galym"
+                data-player="galym"
+            >
+
+                <div class="tactic-circle">
+                    Г
+                </div>
+
+                <span>ГАЛЫМ</span>
+
+            </div>
+
+
+            <!-- ЕКОН -->
+
+            <div
+                class="tactic-player tactic-ekon"
+                data-player="ekon"
+            >
+
+                <div class="tactic-circle">
+                    Е
+                </div>
+
+                <span>ЕКОН</span>
+
+            </div>
+
+
+            <!-- МЯЧ -->
+
+            <div
+                class="tactic-ball"
+                id="tacticBall"
+            >
                 ⚽
             </div>
 
 
-            <div class="pass-line line-one"></div>
-            <div class="pass-line line-two"></div>
-            <div class="pass-line line-three"></div>
+            <!-- СООБЩЕНИЕ -->
 
-
-            <div class="tactic-message" id="tacticMessage">
+            <div
+                class="tactic-message"
+                id="tacticMessage"
+            >
                 ГОТОВЫ К АТАКЕ?
             </div>
 
@@ -376,39 +535,150 @@
     </section>
 
 
-    <!-- MATCHES -->
+    <!-- ================= MATCHES ================= -->
+
     <section class="matches-section">
 
-        <header class="section-head">
+        <div class="section-heading">
+
             <div>
-                <p class="eyebrow">ИСТОРИЯ МАТЧЕЙ</p>
+
+                <div class="eyebrow">
+                    РЕЗУЛЬТАТЫ
+                </div>
 
                 <h2>
                     ПОСЛЕДНИЕ<br>
-                    ИГРЫ
+                    МАТЧИ
                 </h2>
+
             </div>
-        </header>
+
+        </div>
 
 
-        <div class="matches">
+        <div class="matches-list">
 
-            <div class="match">
-                <span>ФК БРАТВА</span>
+            <article class="match-row">
+
+                <div class="match-team">
+                    ФК БРАТВА
+                </div>
+
                 <strong>5 — 2</strong>
-                <span>ПАЦАНЫ СО ДВОРА</span>
-            </div>
 
-            <div class="match">
-                <span>ФК БРАТВА</span>
+                <div class="match-team opponent">
+                    ПАЦАНЫ СО ДВОРА
+                </div>
+
+                <small>ПОБЕДА</small>
+
+            </article>
+
+
+            <article class="match-row">
+
+                <div class="match-team">
+                    ФК БРАТВА
+                </div>
+
                 <strong>3 — 3</strong>
-                <span>СОСЕДНИЙ ДВОР</span>
+
+                <div class="match-team opponent">
+                    СОСЕДНИЙ ДВОР
+                </div>
+
+                <small>НИЧЬЯ</small>
+
+            </article>
+
+
+            <article class="match-row">
+
+                <div class="match-team">
+                    ФК БРАТВА
+                </div>
+
+                <strong>7 — 4</strong>
+
+                <div class="match-team opponent">
+                    КОМАНДА АЗИКОВ
+                </div>
+
+                <small>ПОБЕДА</small>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEAM STATS ================= -->
+
+    <section class="stats-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    СТАТИСТИКА
+                </div>
+
+                <h2>
+                    ЦИФРЫ<br>
+                    БРАТВЫ
+                </h2>
+
             </div>
 
-            <div class="match">
-                <span>ФК БРАТВА</span>
-                <strong>7 — 4</strong>
-                <span>КОМАНДА АЗИКОВ</span>
+        </div>
+
+
+        <div class="big-stats">
+
+            <div class="big-stat">
+
+                <strong>15</strong>
+
+                <span>
+                    ГОЛОВ
+                </span>
+
+            </div>
+
+
+            <div class="big-stat">
+
+                <strong>7</strong>
+
+                <span>
+                    МАТЧЕЙ
+                </span>
+
+            </div>
+
+
+            <div class="big-stat">
+
+                <strong>4</strong>
+
+                <span>
+                    ЛЕГЕНДЫ
+                </span>
+
+            </div>
+
+
+            <div class="big-stat">
+
+                <strong>∞</strong>
+
+                <span>
+                    ИСТОРИЙ
+                </span>
+
             </div>
 
         </div>
@@ -416,35 +686,57 @@
     </section>
 
 
-    <!-- GALLERY -->
+    <!-- ================= GALLERY ================= -->
+
     <section class="gallery-section">
 
-        <header class="section-head">
+        <div class="section-heading dark-heading">
 
             <div>
-                <p class="eyebrow">ЗА КАДРОМ</p>
+
+                <div class="eyebrow">
+                    ЗА КАДРОМ
+                </div>
 
                 <h2>
                     ЖИЗНЬ<br>
                     БРАТВЫ
                 </h2>
+
             </div>
 
-        </header>
+        </div>
 
 
         <div class="gallery">
 
-            <div class="gallery-card gallery-one">
-                <span>ПЕРЕД МАТЧЕМ</span>
+            <div class="gallery-card gallery-main">
+
+                <div>
+                    <span>01</span>
+                    <strong>ПЕРЕД МАТЧЕМ</strong>
+                </div>
+
             </div>
 
-            <div class="gallery-card gallery-two">
-                <span>ПОСЛЕ ГОЛА</span>
+
+            <div class="gallery-card gallery-second">
+
+                <div>
+                    <span>02</span>
+                    <strong>ПОСЛЕ ГОЛА</strong>
+                </div>
+
             </div>
 
-            <div class="gallery-card gallery-three">
-                <span>ФУТБОЛ ДО ТЕМНОТЫ</span>
+
+            <div class="gallery-card gallery-third">
+
+                <div>
+                    <span>03</span>
+                    <strong>ФУТБОЛ ДО ТЕМНОТЫ</strong>
+                </div>
+
             </div>
 
         </div>
@@ -452,10 +744,13 @@
     </section>
 
 
-    <!-- HISTORY -->
+    <!-- ================= HISTORY ================= -->
+
     <section class="history-section">
 
-        <p class="eyebrow">НАША ИСТОРИЯ</p>
+        <div class="eyebrow">
+            ИСТОРИЯ ФК БРАТВА
+        </div>
 
         <h2>
             ОДИН МЯЧ.<br>
@@ -464,34 +759,64 @@
             КОЛИЧЕСТВО ИСТОРИЙ.
         </h2>
 
-        <p class="history-text">
+        <p>
             ФК Братва — это не просто команда.
-            Это когда после футбола обсуждают каждый гол,
-            каждый финт и каждый момент, который вообще
-            никто не собирался забывать.
+            Это когда каждый матч превращается
+            в отдельную историю.
         </p>
 
     </section>
 
 
-    <!-- FOOTER -->
-    <footer class="quote">
+    <!-- ================= RANDOM EVENT ================= -->
+
+    <section class="event-section">
+
+        <div class="event-box">
+
+            <div class="eyebrow">
+                БРАТВА RANDOMIZER
+            </div>
+
+            <h2 id="randomEvent">
+                ЧТО ПРОИЗОЙДЁТ СЕГОДНЯ?
+            </h2>
+
+            <button
+                class="main-button"
+                id="randomButton"
+            >
+                УЗНАТЬ
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-logo">
+            ФК БРАТВА
+        </div>
 
         <p>
-            «ПОБЕЖДАЕМ ВМЕСТЕ.<br>
-            <span>СМЕЁМСЯ ЕЩЁ ГРОМЧЕ.</span>»
+            ПОБЕЖДАЕМ ВМЕСТЕ.<br>
+            <span>СМЕЁМСЯ ЕЩЁ ГРОМЧЕ.</span>
         </p>
 
         <small>
-            — ФК БРАТВА • СЕЗОН 2026
+            СЕЗОН 2026 • MADE BY БРАТВА
         </small>
 
     </footer>
 
-</main>
 
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
+```
