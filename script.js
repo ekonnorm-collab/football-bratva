@@ -181,20 +181,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+/* =====================================================
+   4. ТАКТИКА
+   ===================================================== */
 
-    /* =====================================================
-       4. ТАКТИКА
-       ===================================================== */
+const tacticsBoard = document.querySelector(".tactics-board");
 
-    const tacticSteps =
-        document.querySelectorAll(".tactic-step");
+if (tacticsBoard) {
 
-    tacticSteps.forEach((step, index) => {
+    const tacticPlayers =
+        tacticsBoard.querySelectorAll(".tactic-player");
 
-        step.style.transitionDelay =
-            `${index * 0.12}s`;
+    tacticPlayers.forEach((player, index) => {
+
+        player.addEventListener("click", () => {
+
+            tacticPlayers.forEach((item) => {
+                item.classList.remove("active");
+            });
+
+            player.classList.add("active");
+
+            tacticsBoard.classList.add("playing");
+
+            setTimeout(() => {
+                tacticsBoard.classList.remove("playing");
+            }, 2500);
+
+        });
 
     });
+}
+  
 
 
     /* =====================================================
