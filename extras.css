@@ -789,3 +789,37 @@ a:focus-visible {
         transform: scaleX(1);
     }
 }
+/* =====================================================
+   ЛИНИИ ПАСОВ В ТАКТИКЕ
+   ===================================================== */
+
+.tactic-pass-line {
+    position: absolute;
+    height: 4px;
+    background: white;
+    transform-origin: left center;
+    z-index: 15;
+    pointer-events: none;
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 18px rgba(255, 255, 255, 0.6);
+
+    animation: tacticPassLine 0.8s ease-out forwards;
+}
+
+@keyframes tacticPassLine {
+
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.25;
+    }
+}
