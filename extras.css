@@ -10,14 +10,8 @@
 .gallery-section,
 .history-section,
 .event-section {
-    opacity: 0;
-    transform: translateY(45px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 
