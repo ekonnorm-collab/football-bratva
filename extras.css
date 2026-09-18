@@ -2,18 +2,6 @@
    ФК БРАТВА — EXTRA EFFECTS
    ========================================================= */
 
-.team-section,
-.goal-section,
-.tactics-section,
-.matches-section,
-.stats-section,
-.gallery-section,
-.history-section,
-.event-section {
-    opacity: 1;
-    transform: none;
-}
-
 
 /* ================= HERO ================= */
 
@@ -89,12 +77,14 @@
     content: "";
     position: absolute;
     inset: -100%;
+
     background: linear-gradient(
         120deg,
         transparent 40%,
         rgba(255, 255, 255, 0.16) 50%,
         transparent 60%
     );
+
     transform: translateX(-100%);
     transition: transform 0.8s ease;
     pointer-events: none;
@@ -134,16 +124,22 @@
 
 .football-pitch::before {
     content: "";
+
     position: absolute;
     inset: 0;
+
     background:
         radial-gradient(
             circle at 50% 50%,
             rgba(255, 255, 255, 0.06),
             transparent 45%
         );
+
     pointer-events: none;
 }
+
+
+/* Вспышка поля после гола */
 
 .goal-section.goal-scored .football-pitch {
     animation: pitchFlash 0.5s ease;
@@ -190,11 +186,13 @@
 }
 
 
-/* ================= GOAL ================= */
+/* ================= GOAL EFFECTS ================= */
 
-.goal-section.goal-scored .match-ball {
-    animation: shotToTopCorner 1.25s cubic-bezier(0.35, 0.05, 0.2, 1) forwards;
-}
+/*
+   ВАЖНО:
+   Анимацию match-ball здесь НЕ задаём.
+   Мяч полностью контролируется JavaScript.
+*/
 
 .goal-section.goal-scored .goalkeeper {
     animation: goalkeeperReact 1s ease forwards;
@@ -212,43 +210,23 @@
     animation: celebrationPop 1s ease forwards;
 }
 
-@keyframes shotToTopCorner {
-    0% {
-        left: 24%;
-        top: 62%;
-        transform: translate(-50%, -50%) rotate(0deg) scale(1);
-    }
-
-    35% {
-        left: 48%;
-        top: 47%;
-        transform: translate(-50%, -50%) rotate(180deg) scale(1.05);
-    }
-
-    70% {
-        left: 73%;
-        top: 28%;
-        transform: translate(-50%, -50%) rotate(360deg) scale(0.95);
-    }
-
-    100% {
-        left: 91%;
-        top: 18%;
-        transform: translate(-50%, -50%) rotate(540deg) scale(0.85);
-    }
-}
-
 @keyframes goalkeeperReact {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
     }
 
     45% {
-        transform: translate(-50%, -50%) translateX(-8px) rotate(-4deg);
+        transform:
+            translate(-50%, -50%)
+            translateX(-8px)
+            rotate(-4deg);
     }
 
     100% {
-        transform: translate(-50%, -50%) translateX(35px) rotate(12deg);
+        transform:
+            translate(-50%, -50%)
+            translateX(35px)
+            rotate(12deg);
     }
 }
 
@@ -262,11 +240,17 @@
     }
 
     65% {
-        transform: translate(-50%, -75%) scale(1.12) rotate(-4deg);
+        transform:
+            translate(-50%, -75%)
+            scale(1.12)
+            rotate(-4deg);
     }
 
     100% {
-        transform: translate(-50%, -50%) scale(1.08) rotate(3deg);
+        transform:
+            translate(-50%, -50%)
+            scale(1.08)
+            rotate(3deg);
     }
 }
 
@@ -341,16 +325,19 @@
 }
 
 .tactic-ball {
-    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.35));
+    filter:
+        drop-shadow(0 5px 10px rgba(0, 0, 0, 0.35));
 }
 
 .tactics-board.playing .tactic-ball {
-    animation: tacticBallGlow 0.6s ease-in-out infinite alternate;
+    animation:
+        tacticBallGlow 0.6s ease-in-out infinite alternate;
 }
 
 @keyframes tacticBallGlow {
     from {
-        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+        filter:
+            drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
     }
 
     to {
@@ -362,6 +349,7 @@
 
 .tactic-line {
     transform-origin: left center;
+
     transition:
         width 0.5s ease,
         transform 0.5s ease,
@@ -389,7 +377,8 @@
 }
 
 .tactics-board.playing .tactic-message {
-    animation: tacticMessagePulse 1.2s ease-in-out infinite alternate;
+    animation:
+        tacticMessagePulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes tacticMessagePulse {
@@ -438,9 +427,7 @@
 }
 
 
-/* =========================================================
-   GALLERY — FIX
-   ========================================================= */
+/* ================= GALLERY ================= */
 
 .gallery {
     width: 100%;
@@ -449,25 +436,19 @@
 .gallery-card {
     position: relative;
     overflow: hidden;
-
-    /* ВАЖНО */
     min-height: 420px;
-
     border-radius: 20px;
 }
 
-/* Главная большая карточка */
 .gallery-main {
     min-height: 500px;
 }
 
-/* Фото-карточки */
 .gallery-second,
 .gallery-third {
     min-height: 350px;
 }
 
-/* Медиа */
 .gallery-media {
     position: absolute;
 
@@ -491,7 +472,6 @@
         filter 0.6s ease;
 }
 
-/* Затемнение */
 .gallery-overlay {
     position: absolute;
 
@@ -537,29 +517,19 @@
     letter-spacing: 0.5px;
 }
 
-/* Наведение */
 .gallery-card:hover .gallery-media {
     transform: scale(1.06);
     filter: brightness(1.08);
 }
 
-/* Позиция фотографий */
-.gallery-main .gallery-media {
-    object-position: center center;
-}
-
-.gallery-second .gallery-media {
-    object-position: center center;
-}
-
+.gallery-main .gallery-media,
+.gallery-second .gallery-media,
 .gallery-third .gallery-media {
     object-position: center center;
 }
 
 
-/* =========================================================
-   HISTORY
-   ========================================================= */
+/* ================= HISTORY ================= */
 
 .history-section {
     position: relative;
@@ -570,6 +540,7 @@
     content: "БРАТВА";
 
     position: absolute;
+
     left: 50%;
     top: 50%;
 
@@ -587,9 +558,7 @@
 }
 
 
-/* =========================================================
-   RANDOM EVENT
-   ========================================================= */
+/* ================= RANDOM EVENT ================= */
 
 .event-section {
     position: relative;
@@ -617,11 +586,15 @@
 
 @keyframes randomBallFloat {
     0%, 100% {
-        transform: translateY(-50%) rotate(0deg);
+        transform:
+            translateY(-50%)
+            rotate(0deg);
     }
 
     50% {
-        transform: translateY(calc(-50% - 15px)) rotate(15deg);
+        transform:
+            translateY(calc(-50% - 15px))
+            rotate(15deg);
     }
 }
 
@@ -631,46 +604,8 @@
         transform 0.3s ease;
 }
 
-#randomEvent.random-changing {
-    opacity: 0;
-    transform: translateY(10px);
-}
 
-
-/* =========================================================
-   BUTTON RIPPLE
-   ========================================================= */
-
-.main-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.button-ripple {
-    position: absolute;
-
-    border-radius: 50%;
-
-    transform: scale(0);
-
-    animation: buttonRipple 0.6s ease-out;
-
-    pointer-events: none;
-
-    background: rgba(255, 255, 255, 0.3);
-}
-
-@keyframes buttonRipple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* ================= FOOTER ================= */
 
 .footer-logo {
     transition:
@@ -684,9 +619,7 @@
 }
 
 
-/* =========================================================
-   FOCUS
-   ========================================================= */
+/* ================= FOCUS ================= */
 
 button:focus-visible,
 a:focus-visible {
@@ -695,9 +628,7 @@ a:focus-visible {
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* ================= MOBILE ================= */
 
 @media (max-width: 700px) {
 
@@ -737,10 +668,6 @@ a:focus-visible {
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
 @media (max-width: 420px) {
 
     .gallery-card {
@@ -770,9 +697,7 @@ a:focus-visible {
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/* ================= REDUCED MOTION ================= */
 
 @media (prefers-reduced-motion: reduce) {
 
