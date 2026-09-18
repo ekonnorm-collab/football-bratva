@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
              * улетал выше ворот.
              */
             const endX = pitchWidth * 0.89;
-            const endY = pitchHeight * 0.34;
+            const endY = pitchHeight * 0.40;
 
             /* Отключаем старую CSS-анимацию */
             matchBall.style.animation = "none";
