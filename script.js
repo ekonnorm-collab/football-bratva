@@ -247,7 +247,6 @@ if (
         /*
          * Перемещаем мяч к игроку
          */
-       
 function moveBallTo(player, duration = 650) {
 
     const boardRect =
@@ -279,11 +278,6 @@ function moveBallTo(player, duration = 650) {
         playerRect.height / 2 -
         boardRect.top;
 
-    const line =
-        document.createElement("div");
-
-    line.classList.add("tactic-pass-line");
-
     const dx = endX - startX;
     const dy = endY - startY;
 
@@ -292,6 +286,11 @@ function moveBallTo(player, duration = 650) {
 
     const angle =
         Math.atan2(dy, dx) * 180 / Math.PI;
+
+    const line =
+        document.createElement("div");
+
+    line.classList.add("tactic-pass-line");
 
     line.style.left =
         `${startX}px`;
